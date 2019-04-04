@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<title>关键字-特斯汀</title>
+<meta http-equiv="Cache-Control" content="no-siteapp,no-store" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<link rel="icon" type="image/png" href="dist/i/logo.png">
+<link rel="stylesheet" href="dist/amazeui.min.css" />
+<link rel="stylesheet" href="css/report.css" />
+<link rel="stylesheet" href="dist/mail_report.css" /> 
+<link rel="stylesheet" href="css/keywords.css" />
+<script src="../common/jquery.min.js"></script>
+<script src="./js/KeyWords.js"></script>
+<link rel="stylesheet" href="css/automation.css" />
+</head>
+<body onload="Init();">
+	<header class="am-topbar am-header">
+		<div class="am-topbar-brand">
+			<strong style="font-size: 20px;" id="userinfo"
+				onclick="$('#nav').show();">null</strong>
+			<div id="nav" onmouseleave="$('#nav').hide();" style="display:none;">
+				<p onclick="Jump();">我的配置</p>
+				<p onclick='javascript:AjaxLogout();'>退出</p>
+			</div>
+
+		</div>
+		<div data-module="topbarcollapse"
+			class="am-collapse am-topbar-collapse">
+			<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right">
+				<li><a data-type="fisrt" href="ReportForms.html"><span
+						class="am-icon-asterisk"></span>Report Forms</a></li>
+				<li><a data-type="second" href="TestReport.html"><span
+						class="am-icon-book"></span>Test Report</a></li>
+				<li><a data-type="third" href="Automation.html"><span
+						class="am-icon-gear"></span>Automation</a></li>
+				<li><a data-type="forth" href="KeyWords.html"><span
+						class="am-icon-star"></span>KeyWords</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<div class="nu0" style="top: 50px; position: relative;">
+		<div id="1516849336952_mailService" class="APP-service">
+			<div class="APP-service-item APP-service-itemTrain">
+
+				<div class="header">
+					<div style="float: left;">
+						<img src="img/logo.png" class="logo" alt="动脑">
+						<p style="color: #0e90d2; font-size: 14px; font-weight: bold;">自动化平台</p>
+					</div>
+					<a id="Msg" style=" left:45%; position: absolute; color:red;">&nbsp</a>
+					<div class="customer">
+						<label>功能：</label>
+						<select name="select_type" id="select_t" onchange="getKeyWrods();">
+			<option value="-1">选择类型</option>
+			<option value="0">系统关键字</option>
+			<option value="1">UI关键字</option>
+			<option value="2">接口关键字</option>
+			<option value="3">APP关键字</option>
+		</select>
+					</div>
+				</div>
+	
+	<div class="am-content">
+		<ul id="myTable" class="itemContainer"
+			style="position: relative;">
+			<li><span class="avatar">Index</span> <span>Name</span> <span>Describe</span>
+				<span>Usage</span></li>
+			<li><span class="avatar">1</span> <span>系统提示</span> <span>查询结果</span>
+				<span>查询结果为空，请检查查询条件</span></li>
+		</ul>
+		<div class="holder"></div>
+	</div>
+	</div>
+	</div>
+	</div>
+	<script src="dist/jPages.min.js"></script>
+	<script>
+		$(function() {
+			$("div.holder").jPages({
+				containerID : "myTable",
+				perPage : 10
+			});
+		});
+	</script>
+</body>
+</html>

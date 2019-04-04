@@ -1,0 +1,42 @@
+@charset "utf-8";
+#select_t{
+	display: inline-block;
+	float: right;
+	position: relative;
+	top: 4px;
+	z-index: 99;
+}
+#myTable{
+	width: 90%;
+	margin: auto;
+}
+#myTable li span{
+	display: inline-block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+#myTable li span:nth-of-type(1){
+	width: 9%;
+}
+
+#myTable li span:nth-of-type(2){
+	width: 9%;
+}
+
+#myTable li span:nth-of-type(3){
+	width: 9%;
+}
+
+#myTable li span:nth-of-type(4){
+	width: 60%;
+}
+
+
+.holder{
+    display: inline-block;
+    float: right;
+    right: 5%;
+    position: relative;
+}

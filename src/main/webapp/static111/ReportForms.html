@@ -1,0 +1,155 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>报告-特斯汀</title>
+<meta http-equiv="Cache-Control" content="no-siteapp,no-store" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<link rel="icon" type="image/png" href="dist/i/logo.png">
+<link rel="stylesheet" href="dist/amazeui.min.css" />
+<link rel="stylesheet" href="css/report.css" />
+<link rel="stylesheet" href="dist/mail_report.css" />
+<link rel="stylesheet" href="css/automation.css" />
+</head>
+<body onload="getRes();">
+	<header class="am-topbar am-header">
+		<div class="am-topbar-brand">
+			<strong style="font-size: 20px;" id="userinfo"
+				onclick="$('#nav').show();">null</strong>
+			<div id="nav" onmouseleave="$('#nav').hide();" style="display:none;">
+				<p onclick="Jump();">我的配置</p>
+				<p onclick='javascript:AjaxLogout();'>退出</p>
+			</div>
+
+		</div>
+		<div data-module="topbarcollapse"
+			class="am-collapse am-topbar-collapse">
+			<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right">
+				<li><a data-type="fisrt" href="ReportForms.html"><span
+						class="am-icon-asterisk"></span>Report Forms</a></li>
+				<li><a data-type="second" href="TestReport.html"><span
+						class="am-icon-book"></span>Test Report</a></li>
+				<li><a data-type="third" href="Automation.html"><span
+						class="am-icon-gear"></span>Automation</a></li>
+				<li><a data-type="forth" href="KeyWords.html"><span
+						class="am-icon-star"></span>KeyWords</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<div class="nu0" style="top: 50px; position: relative;">
+		<div id="1516849336952_mailService" class="APP-service">
+			<div class="APP-service-item APP-service-itemTrain">
+
+				<div class="header">
+					<div style="float: left;">
+						<img src="img/logo.png" class="logo" alt="动脑">
+						<p style="color: #0e90d2; font-size: 14px; font-weight: bold;">自动化平台</p>
+					</div>
+					<a id="Msg" style="left: 45%; position: absolute; color: red;">&nbsp</a>
+					<div class="customer">
+						<label>功能：</label><a class="name"
+							style="font-size: 14px; position: relative; top: -2px;" href="./TestReport.html">查看详情</a>
+					</div>
+				</div>
+				<div class="am-content">
+					<div data-module="firstlevel" class="am-animation-slide-left">
+						<div class="am-cf am-padding"></div>
+						<!-- <div class="am-container"> -->
+						<div class="am-g">
+							<div class="am-u-md-6">
+								<div class="am-panel am-panel-default">
+									<div class="am-panel-hd">
+										<h4 id="rate" class="am-panel-title"
+											data-am-collapse="{ target: '#base'}">用例xxx - 通过率</h4>
+									</div>
+									<div id="base" class="am-panel-collapse am-collapse am-in">
+										<div class="am-panel-bd">
+											<div id="basic-main-content" render="true"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="am-u-md-6">
+								<div class="am-panel am-panel-default">
+									<div class="am-panel-hd">
+										<h4 id="modules" class="am-panel-title"
+											data-am-collapse="{ target: '#type'}">用例xxx - 模块</h4>
+									</div>
+									<div id="type" class="am-panel-collapse am-collapse am-in">
+										<div class="am-panel-bd">
+											<div id="type-main-content" style="display: none;"
+												render="true"></div>
+											<div id="combo-main-echarts" render="true"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="am-g">
+							<div class="am-u-md-6" style="width: 40%">
+								<div class="am-panel am-panel-default">
+									<div class="am-panel-hd">
+										<h4 id="stastic" class="am-panel-title"
+											data-am-collapse="{ target: '#statistics'}">用例xxx - 统计</h4>
+									</div>
+									<div id="statistics"
+										class="am-panel-collapse am-collapse am-in">
+										<div class="am-panel-bd">
+											<div id="statistics-main-content" render="true"></div>
+											<div class="holder holder1"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="am-u-md-6" style="width: 60%">
+								<div class="am-panel am-panel-default">
+									<div class="am-panel-hd">
+										<h4 id="record" class="am-panel-title"
+											data-am-collapse="{ target: '#expend'}">用户xxx - 记录</h4>
+									</div>
+									<div id="expend" class="am-panel-collapse am-collapse am-in">
+										<div class="am-panel-bd">
+											<div id="expend-main-content" render="true"></div>
+											<div class="holder holder2"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../common/jquery.min.js"></script>
+	<script src="../common/amazeui.min.js"></script>
+	<script src="dist/echarts.min.js"></script>
+	<script src="dist/t3.min.js"></script>
+	<script src="dist/jPages.min.js"></script>
+	<script src="dist/report.min.js"></script>
+	<script type="text/javascript">
+		function init() {
+			Box.Application.init();
+		}
+
+		$(function() {
+			$("div.holder1").jPages({
+				containerID : "itemContainer1",
+				perPage : 10
+			});
+			$("div.holder2").jPages({
+				containerID : "itemContainer2",
+				perPage : 10
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>个人中心</title>
+<meta http-equiv="Cache-Control" content="no-siteapp,no-store" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<link rel="icon" type="image/png" href="dist/i/logo.png">
+<link rel="stylesheet" href="dist/mail_report.css" />
+<link rel="stylesheet" href="css/automation.css" />
+</head>
+<body onload="Init();">
+
+	<div style="width: 90%;position: relative;left: 5%;">
+		<div class="colum-title" style="background-color: #f0e6e6;"><span>✉
+				邮件配置</span>
+				<a id="MsgMail" style=" left:45%; position: absolute; color:red;">&nbsp</a>
+				<span
+			style="float: right; left: -20px; position: relative; color: blue"
+			onclick="UpdateMail();">保存</span></div>
+
+		<div class="APP-service-item APP-service-itemTrain">
+			<div class="content">
+			<form id="mail">
+				<div style="line-height: 3;">
+				发件人：
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp🙇 <input id="sendnick" name="sendnick" value="发件人">
+				&nbsp&nbsp&nbsp✉ <input id="email" name="email" value="test@test.com">
+				&nbsp&nbsp&nbsp☞ <input id="mailpass" name="mailpass" type="password" value="pwd">
+				</div>
+				<hr>
+				<div style="line-height: 3;">
+				<div style="float: left;">收件人：
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp🙇&nbsp</div><div style="top: 12px; position: relative;"><textarea id="recievers" name="recievers" rows="2" cols="83">test1@test.com;test2@test.com;</textarea></div>
+				</div>
+				<hr>
+				<div style="line-height: 3;">
+				<div style="float: left;">抄送列表：
+				&nbsp&nbsp&nbsp🙇&nbsp</div><div style="top: 12px; position: relative;"><textarea id="copylist" name="copylist" rows="2" cols="83">copy1@test.com;copy2@test.com;</textarea></div>
+				</div>
+				<hr>
+				<div style="line-height: 3;">
+				<div style="float: left;">发送配置：
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+				<input type="radio" id="sendconfig" checked value="1" >运行完成后发送   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				</div>
+			</form>
+			<hr>
+			<div style="float: right; right: -15px;">
+				<input type="button" name="testmail" value="测试" onclick="testMail();">
+			</div>
+			<br>
+			</div>
+		</div>
+		
+		<div class="colum-title" style="background-color: #f0e6e6;"><span>✈
+				运行配置</span>
+				<a id="MsgRun" style=" left:45%; position: absolute; color:red;">&nbsp</a>
+				<span
+			style="float: right; left: -20px; position: relative; color: blue"
+			onclick="UpdateRun();">保存</span></div>
+
+		<div class="APP-service-item APP-service-itemTrain">
+			<div class="content">
+			<form id="run">
+				<div style="line-height: 3;">
+				<div style="float: left;">获取授权码：
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+				<input type="button" value="获取" onclick="ShowTimer('1')">
+				<input type="button" value="重新生成" onclick="ShowTimer('1')"><a id="token">&nbsp&nbsp&nbsp</a>
+				</div>
+				<hr>
+				<div style="line-height: 3;">
+				<div style="float: left;">&nbsp&nbsp&nbsp运行配置：
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</div>
+				<input type="radio" name="isauto" checked value="1" onclick="ShowTimer('1')">手动运行用例   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<input type="radio" name="isauto" value="0" onclick="ShowTimer('2')">定时运行&nbsp
+				<div id="timer" hidden="true">
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp定时：<input type="text" name="timer" size="10" value="0 0 18" title="每天18点执行，中间没有运行则不执行。">
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 设置用例：<input disabled type="text" id="filenames" name="filenames" size="20" value="" title="定时运行的用例，分号隔开，运行分前后顺序。">
+				<select id="type" onchange="javascript:showCases(this.value);" style="height: 22px;top: 2px;position: relative;"><option value="UI">选择用例</option><option value="UI">UI</option><option value="Interface">接口</option><option value="APP">APP</option></select>
+				<select id="Cases" onchange="javascript:addCases(this.value);" style="height: 22px;top: 2px;position: relative; width: 150px;"><option value="选择用例">选择用例</option></select>
+				</div>
+				</div>
+			</form>
+			<hr>
+			<div style="float: right; right: -15px;">
+				<input type="button" name="testmail" value="测试" onclick="ShowTimer('2')">
+			</div>
+			<br>
+			</div>
+			</div>
+		</div>
+	</div>
+
+	<!--<h1>Automation</h1>
+					<h2>autoTest Framework Cases And Runner</h2>-->
+	<a id="run" href=""></a>
+	<script src="../common/jquery.min.js"></script>
+	<script src="./js/configs.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+@charset "utf-8";
+
+#nav {
+	width: 150px;
+    height: 100px;
+    border: 1px solid #fff;
+    position: fixed;
+    background: #3293ff;
+    left: 20px;
+    top: 42px;
+    display: none;
+    z-index: 1000; 
+}
+
+#nav p{
+	margin: 0 0 0 10px;
+}
+
+.child input{
+	outline: none;
+	border: none;
+	padding: 10px;
+}
+
+.colum-title{
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    background: #f7f7f7;
+   	margin: 10px 5px;
+    color: #5a5a5a;
+    cursor: pointer;
+}
+.colum-title:hover{
+    color: #5a5a5a;
+}
+.child{
+  height: 125px;
+}
+
+.child .left-div,.child .right-div {
+    position: relative;
+    width: 50%;
+    padding: 2%;
+    float: left;
+    text-align: center;
+    top: -13px;
+}
+.left1 {
+   	padding: 10px;	
+    width: 90%;
+    height: 43px;
+    position: relative;
+    font-size: 12px;
+    background: #ffffff;
+    border-radius: 3px;
+    color: white;
+    border: 1px solid #e3e3e3!important;
+    margin-bottom: 15px;
+}
+.right1 {
+    width: 90%;
+    height: 43px;
+    position: relative;
+    background: #ffffff;
+    color: white;
+    border: 1px solid #e3e3e3;
+    margin-bottom: 15px;
+}
+#child1 input[type='button'] {
+    background: #f0e6e6;
+    color: #555;
+}
+#child2 input[type='button'] {
+    background: #f2d5af;
+    color: #555;
+}
+#child3 input[type='button'] {
+    background: #c3a09c;
+    color: #555;
+}

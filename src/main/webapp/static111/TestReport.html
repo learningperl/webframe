@@ -1,0 +1,148 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>报告-特斯汀</title>
+<meta http-equiv="Cache-Control" content="no-siteapp,no-store" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<link rel="icon" type="image/png" href="dist/i/logo.png">
+<link rel="stylesheet" href="dist/amazeui.min.css" />
+<link href="dist/mail_report.css" rel="stylesheet" type="text/css">
+<script src="./js/TestReport.js"></script>
+<script src="../common/jquery.min.js"></script>
+<script src="../common/amazeui.min.js"></script>
+<script src="dist/echarts.min.js"></script>
+<script src="dist/t3.min.js"></script>
+<link rel="stylesheet" href="css/automation.css" />
+<style>
+.hiddenRow{
+	display: none;
+}
+
+.hiddenDetail {
+	display: block;
+}
+</style>
+</head>
+<body onload="getRes();">
+	<header class="am-topbar am-header">
+		<div class="am-topbar-brand">
+			<strong style="font-size: 20px;" id="Tester"
+				onclick="$('#nav').show();">null</strong>
+			<div id="nav" onmouseleave="$('#nav').hide();">
+				<p onclick="Jump();">我的配置</p>
+				<p onclick='javascript:AjaxLogout();'>退出</p>
+			</div>
+		</div>
+		<div data-module="topbarcollapse"
+			class="am-collapse am-topbar-collapse">
+			<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right">
+				<li><a data-type="fisrt" href="ReportForms.html"><span
+						class="am-icon-asterisk"></span>Report Forms</a></li>
+				<li><a data-type="second" href="TestReport.html"><span
+						class="am-icon-book"></span>Test Report</a></li>
+				<li><a data-type="third" href="Automation.html"><span
+						class="am-icon-gear"></span>Automation</a></li>
+				<li><a data-type="forth" href="KeyWords.html"><span
+						class="am-icon-star"></span>KeyWords</a></li>
+			</ul>
+		</div>
+	</header>
+
+
+	<div class="nu0" style=" top: -27px; position: relative;">
+		<div id="1516849336952_mailService" class="APP-service">
+			<div class="APP-service-item APP-service-itemTrain">
+
+				<div class="header">
+					<div style="float: left;">
+						<img src="img/logo.png" class="logo" alt="动脑">
+						<p style="color: #0e90d2; font-size: 14px; font-weight: bold;">自动化平台</p>
+					</div>
+					<div class="customer">
+						<label>用例：</label><span class="name" id="title">null</span>
+					</div>
+				</div>
+
+				<div class="content">
+					<div class="information f-clear">
+						<span class="box time"><label>测试时间</label><span id="time">
+								null</span></span>
+					</div>
+					<div class="train f-clear">
+						<span class="box number" id="rate">null</span>
+					</div>
+					<div class="train f-clear">
+						<span class="box number" id="status">null</span>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<div class="nu0">
+		<div id="1516849336952_mailService" class="APP-service">
+			<div class="APP-service-item APP-service-itemTrain">
+
+				<div class="header">
+					<div class="customer" style="float: left;">
+						<span class="name">&nbsp&nbsp&nbspDetails</span>
+					</div>
+				</div>
+				<div class="am-g report-detail">
+					<div class="am-u-md-12">
+						<div class="am-panel am-panel-default">
+							<div id="statistics" class="am-panel-collapse am-collapse am-in">
+								<div class="am-panel-bd">
+									<div id="statistics-main-content" render="true">
+										<table id="details" width="100%"
+											class="am-table am-table-bd am-table-bdrs am-table-striped am-table-hover am-text-xs">
+											<thead>
+												<tr>
+													<th>模块名</th>
+													<th>Count</th>
+													<th>Pass</th>
+													<th>Fail</th>
+													<th>View</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>分组</td>
+													<td><span class="am-badge am-badge-count"
+														data-type="count">10</span></td>
+													<td><span class="am-badge am-badge-pass"
+														data-type="pass">6</span></td>
+													<td><span class="am-badge am-badge-fail"
+														data-type="fail">2</span></td>
+													<td><span class="am-badge am-badge-error"
+														data-type="error">2</span></td>
+													<td class="option"><a data-target="one">Detail</a></td>
+												</tr>
+												<tr class="hiddenRow" data-value="one">
+													<td>用例名</td>
+													<td colspan="5"><a>pass</a>
+														<p>详细内容</p></td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<hr />
+
+</body>
+
+</html>

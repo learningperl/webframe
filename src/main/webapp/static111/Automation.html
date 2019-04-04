@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>自动化-特斯汀</title>
+<meta http-equiv="Cache-Control" content="no-siteapp,no-store" />
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<link rel="icon" type="image/png" href="dist/i/logo.png">
+<link rel="stylesheet" href="dist/amazeui.min.css" />
+<link rel="stylesheet" href="dist/mail_report.css" />
+<link rel="stylesheet" href="css/report.css" />
+<link rel="stylesheet" href="css/automation.css" />
+</head>
+<body onload="Init();">
+	<header class="am-topbar am-header">
+		<div class="am-topbar-brand">
+			<strong style="font-size: 20px;" id="userinfo"
+				onclick="$('#nav').show();">null</strong>
+			<div id="nav" onmouseleave="$('#nav').hide();">
+				<p onclick="Jump();">我的配置</p>
+				<p onclick='javascript:AjaxLogout();'>退出</p>
+			</div>
+
+		</div>
+		<div data-module="topbarcollapse"
+			class="am-collapse am-topbar-collapse">
+			<ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right">
+				<li><a data-type="fisrt" href="ReportForms.html"><span
+						class="am-icon-asterisk"></span>Report Forms</a></li>
+				<li><a data-type="second" href="TestReport.html"><span
+						class="am-icon-book"></span>Test Report</a></li>
+				<li><a data-type="third" href="Automation.html"><span
+						class="am-icon-gear"></span>Automation</a></li>
+				<li><a data-type="forth" href="KeyWords.html"><span
+						class="am-icon-star"></span>KeyWords</a></li>
+			</ul>
+		</div>
+	</header>
+
+	<div class="nu0" style="top: 50px; position: relative;">
+		<div id="1516849336952_mailService" class="APP-service">
+			<div class="APP-service-item APP-service-itemTrain">
+
+				<div class="header">
+					<div style="float: left;">
+						<img src="img/logo.png" class="logo" alt="动脑">
+						<p style="color: #0e90d2; font-size: 14px; font-weight: bold;">自动化平台</p>
+					</div>
+					<a id="Msg" style="left: 45%; position: absolute; color: red;">&nbsp</a>
+					<div class="customer">
+						<label>功能：</label><a class="name"
+							style="font-size: 14px; position: relative; top: -2px;"
+							id="debug">调试</a>
+					</div>
+				</div>
+
+				<div class="content">
+					<a class="colum-title" style="background-color: #f0e6e6;"><span>☆UI
+							自动化测试</span></a>
+					<div class="child" id="child1" style="display: block;">
+						<div class="green">
+							<div class="left-div">
+								<form id="fileUpload" action="" enctype="multipart/form-data"
+									method="post">
+									<input id="UI" name="UI" type="file"
+										accept="application/vnd.ms-excel" class="left1"
+										style="color: black;" /> <input type="button"
+										onclick='javascript:ajaxSubmitForm("UI");'
+										value="Upload Selected Cases File">
+								</form>
+							</div>
+							<div class="right-div">
+								<form id="Cases" action="post">
+									<select name="select" id="select_UI" class="right1"
+										style="color: black;" onchange='javascript:getResName("UI");'>
+										<option value="选择用例">选择用例</option>
+									</select> <input type="button" onclick='javascript:runExe("UI");'
+										value="Run Selected Cases File">
+								</form>
+							</div>
+						</div>
+					</div>
+					<a class="colum-title" href="#" style="background-color: #f2d5af;">
+						<span>☆APP 自动化测试</span>
+					</a>
+					<div class="child" id="child2" style="display: none;">
+						<div>
+							<div class="left-div">
+								<form id="fileUpload" action="" enctype="multipart/form-data"
+									method="post">
+									<input id="APP" name="APP" type="file"
+										accept="application/vnd.ms-excel" class="left1"
+										style="color: black;" /> <input type="button"
+										onclick='javascript:ajaxSubmitForm("APP");'
+										value="Upload Selected Cases File">
+								</form>
+							</div>
+							<div class="right-div">
+								<form id="Cases" action="post">
+									<select name="select" id="select_APP" class="right1"
+										style="color: black;" onchange='javascript:getResName("APP");'>
+										<option value="选择用例">选择用例</option>
+									</select> <input type="button" onclick='javascript:runExe("APP");'
+										value="Run Selected Cases File">
+								</form>
+							</div>
+						</div>
+					</div>
+					<a class="colum-title" href="#" style="background-color: #f0e6e6;">
+						<span>☆接口自动化测试</span>
+					</a>
+					<div class="child" id="child3" style="display: none;">
+						<div>
+							<div class="left-div">
+								<form id="fileUpload" action="" enctype="multipart/form-data"
+									method="post">
+									<input id="Interface" name="Interface" type="file"
+										accept="application/vnd.ms-excel" class="left1"
+										style="color: black;" /> <input type="button"
+										onclick='javascript:ajaxSubmitForm("Interface");'
+										value="Upload Selected Cases File">
+								</form>
+							</div>
+							<div class="right-div">
+								<form id="Cases" action="post">
+									<select name="select" id="select_Interface" class="right1"
+										style="color: black;"
+										onchange='javascript:getResName("Interface");'>
+										<option value="选择用例">选择用例</option>
+									</select> <input type="button" onclick='javascript:runExe("Interface");'
+										value="Run Selected Cases File">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+	<!--<h1>Automation</h1>
+					<h2>autoTest Framework Cases And Runner</h2>-->
+	<a id="run" href=""></a>
+	<script src="../common/jquery.min.js"></script>
+	<script src="./js/Automation.js"></script>
+	<script>
+		$("a.colum-title").click(function() {
+			$(this).next().toggle();
+		})
+	</script>
+</body>
+</html>

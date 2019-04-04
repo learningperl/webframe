@@ -1,0 +1,187 @@
+﻿@charset "utf-8";
+.fixed-layout .admin-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1500;
+}
+
+.fixed-layout .admin-main {
+  position: relative;
+  height: 100%;
+  padding-top: 51px;
+}
+
+.fixed-layout .admin-content{
+  	height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+.report-detail .am-table.am-table-bd tbody{
+	display: none;
+}
+.am-table.am-table-bd tr th:nth-child(1){
+	width: 40%;
+}
+.am-table.am-table-bd tr th:nth-child(2){
+	width: 10%;
+}
+
+.am-table.am-table-bd tr th:nth-child(3){
+	width: 10%;
+}
+
+.am-table.am-table-bd tr th:nth-child(4){
+	width: 10%;
+}
+.am-table.am-table-bd tr th:nth-child(5){
+	width: 10%;
+}
+.am-table.am-table-bd tr th:last-of-type,.am-table.am-table-bd tr td:last-of-type{
+	width: 20%;
+	text-align: center;
+}
+ .am-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    font-size: 1.4rem;
+    margin-bottom: 0;
+  }
+  .am-content{
+    position: relative;
+    height: 100%;
+  }
+.am-content p.report-info{
+	height: 30px;
+	line-height: 30px;
+	margin: 0;
+}
+.hiddenRow{
+	display: none;
+}
+
+.hiddenRow td:nth-of-type(1){
+	text-indent:30px;
+	
+}
+
+.am-badge.am-badge-count{
+	background-color: #F37B1D;;
+}
+.am-badge.am-badge-pass{
+	background-color: #5eb95e;
+}
+.am-badge.am-badge-fail{
+	background-color: #dd514c;
+}
+.am-badge.am-badge-error{
+	background-color: #999;
+}
+.option a{
+	cursor: pointer;
+	font-weight: bold;
+}
+.hiddenRow td:nth-child(2){
+	text-align: center;
+}
+.hiddenRow td:nth-child(2) a{
+		cursor: pointer;
+	font-weight: bold;
+}
+.hiddenRow td:nth-child(2) p{
+		display: none;
+}
+/*表格 ul*/
+.itemContainer{
+	padding: 0;
+}
+.itemContainer li{
+		height: 45px;
+    line-height: 45px;
+    list-style: none;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    border-spacing: 2px;
+    border-color: grey;
+    border-top: 1px solid #ddd;
+    padding: 0 10px;
+    cursor: default;
+}
+.itemContainer li:hover{
+	 background-color: #e9e9e9;
+}
+.itemContainer li:first-child
+,.itemContainer li:first-child:hover{
+	border: none;
+	font-weight: bold;
+	background-color:#fff;
+}
+
+.itemContainer li>span:nth-child(1){
+	display: inline-block;
+	width: 15%;
+}
+
+.itemContainer li>span:nth-child(2){
+	display: inline-block;
+	width: 15%;
+}
+.itemContainer li>span:nth-child(3){
+	display: inline-block;
+	width: 15%;
+}
+
+.itemContainer li>span:nth-child(4){
+	display: inline-block;
+	width: 15%;
+}
+.itemContainer li>span:nth-child(5){
+	display: inline-block;
+	width: 25%;
+}
+.itemContainer li>span:nth-child(6){
+	display: inline-block;
+	width: 15%;
+}
+/*分页  jPages */
+.holder {
+	margin: 15px 0;
+}
+
+.holder a {
+	font-size: 12px;
+	cursor: pointer;
+	margin: 0 5px;
+	color: #333;
+	padding: 2px;
+}
+
+.holder a:hover {
+	background-color: #3293ff;
+	color: #fff;
+	padding: 2px;
+}
+
+.holder a.jp-previous { margin-right: 15px; }
+.holder a.jp-next { margin-left: 15px; }
+
+.holder a.jp-current, a.jp-current:hover { 
+	color: #FF4242;
+	font-weight: bold;
+}
+
+.holder a.jp-disabled, a.jp-disabled:hover {
+	color: #bbb;
+}
+
+.holder a.jp-current, a.jp-current:hover,
+.holder a.jp-disabled, a.jp-disabled:hover {
+	cursor: default; 
+	background: none;
+}
+
+.holder span { margin: 0 5px; }

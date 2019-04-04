@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<title>动脑测试 - 自动化</title>
+<link rel="stylesheet" href="./css/style.css" />
+<script src="./js/jquery.min.js"></script>
+<script src="./js/Automation.js"></script>
+</head>
+<body onload="Init();">
+	<div class="testing">
+<header class="main">
+	<h1><strong>动脑</strong> 自动化测试框架</h1>
+</header>
+<section class="user">
+	<div class="profile-img">
+		<img src="img/user.png" alt="" height="40" width="40" /><p id="userinfo">Get userinfo fail!</p>
+	</div>
+	<div class="profile-img" style="position: absolute;top: 40%;left: 36%; text-align: center;">
+		<p id="Msg" style="color:red;"></p>
+	</div>
+	<div class="buttons">
+		<button class="ico-font">&#9206;</button>
+		<span class="button">Live</span>
+		 <span class="button">Help</span>
+		 <span class="button blue"><a href="javascript:AjaxLogout();">Logout</a></span>
+	</div>
+</section>
+</div>
+	<nav>
+		<ul>
+			<li><a href="stat.html"><span class="icon">&#128202;</span>
+					Statistics</a></li>
+			<li><a href="KeyWords.html"><span class="icon">&#128101;</span>
+					KeyWords</a></li>
+			<li class="section"><a href="Automation.html"><span
+					class="icon">&#9881;</span>Automation</a></li>
+		</ul>
+	</nav>
+
+	<section class="content" style="height: 88%;">
+		<section class="widget"
+			style="position: relative; top: -85px; height: 118%;">
+			<header>
+				<span class="icon">&#128100;</span>
+				<hgroup>
+					<h1>Automation</h1>
+					<h2>autoTest Framework Cases And Runner</h2>
+				</hgroup>
+				<aside>
+					<span> <a id="debug" href='autoTest://"debug" "result" "2" "3" "4"'>&#9881;</a>
+
+					</span>
+				</aside>
+			</header>
+			<div class="content" style="position: relative; height: 84%;">
+				<a href="#" onclick="show(0)">
+					<button class="green"
+						style="display: block; width:  100%; text-align: left;">☆UI
+						自动化测试</button>
+				</a>
+				<div id="child1" style="display: block;">
+					<div class="green">
+						<div class="left-div">
+							<form id="fileUpload" action="" enctype="multipart/form-data" method="post">
+							<input id="UI" name="UI" type="file" accept="application/vnd.ms-excel" class="left1"/>
+							<input type="button" onclick='javascript:ajaxSubmitForm("UI");' style="width:70%;position:relative;left:12%;" value="Upload Selected Cases File">
+							</form>
+						</div>
+						<div class="right-div">
+							<form id="Cases" action="post">
+							<select name="select" id="select_UI" class="right1">
+								<option value="选择用例">选择用例</option>
+							</select>
+							<input type="button" onclick='javascript:runExe("UI");' style="width:70%;position:relative;left:14%; top:15px;" value="Run Selected Cases File">
+							</form>
+						</div>
+						<div>&nbsp</div>
+					</div>
+				</div>
+				<a href="#" onclick="show(1)"> <br></br>
+				<button class="orange"
+						style="display: block; width:  100%; text-align: left; left: -5px;">☆APP
+						自动化测试</button>
+				</a>
+				<div id="child2" style="display: none;">
+					<div class="orange">
+						<div class="left-div">
+							<form id="fileUpload" action="" enctype="multipart/form-data" method="post">
+							<input id="APP" name="APP" type="file" accept="application/vnd.ms-excel" class="left1"/>
+							<input type="button" onclick='javascript:ajaxSubmitForm("APP");' style="width:70%;position:relative;left:12%;" value="Upload Selected Cases File">
+							</form>
+						</div>
+						<div class="right-div">
+							<form id="Cases" action="post">
+							<select name="select" id="select_APP" class="right1">
+								<option value="选择用例">选择用例</option>
+							</select>
+							<input type="button" onclick='javascript:runExe("APP");' style="width:70%;position:relative;left:14%; top:15px;" value="Run Selected Cases File">
+							</form>
+						</div>
+						<div>&nbsp</div>
+					</div>
+				</div>
+				<br></br>
+				<a href="#" onclick="show(2)">
+				<button class="red"
+						style="display: block; width:  100%; text-align: left; left: -5px;">☆接口自动化测试</button>
+				</a>
+				<div id="child3" style="display: none;">
+					<div class="red" style="width:98%; height:166px;">
+						<div class="left-div">
+							<form id="fileUpload" action="" enctype="multipart/form-data" method="post">
+							<input id="Interface" name="Interface" type="file" accept="application/vnd.ms-excel" class="left1"/>
+							<input type="button" onclick='javascript:ajaxSubmitForm("Interface");' style="width:70%;position:relative;left:12%;" value="Upload Selected Cases File">
+							</form>
+						</div>
+						<div class="right-div">
+							<form id="Cases" action="post">
+							<select name="select" id="select_Interface" class="right1">
+								<option value="选择用例">选择用例</option>
+							</select>
+							<input type="button" onclick='javascript:runExe("Interface");' style="width:70%;position:relative;left:14%; top:15px;" value="Run Selected Cases File">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a id="run" href=""></a>
+		</section>
+	</section>
+</body>
+</html>

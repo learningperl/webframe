@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<title>动脑测试-关键字</title>
+<link rel="stylesheet" href="./css/style.css" />
+<!--[if IE]><link rel="stylesheet" href="css/ie.css" media="all" /><![endif]-->
+<script src="./js/jquery.min.js"></script>
+<script src="./js/KeyWords.js"></script>
+</head>
+<body onload="Init();">
+	<div class="testing">
+		<header class="main">
+			<h1>
+				<strong>动脑</strong> 自动化测试框架
+			</h1>
+			<img src="img/search.png" alt="" height="18" width="18" onclick="searchKey();"
+				style="float: right; top: -17px; position: relative; right: 22px;"></img>
+			<input type="text" value="search" id="searchText"
+				onkeydown='if(event.keyCode==13){searchKey();}'
+				onfocus='if(this.value=="search"){this.value=""}'
+				onblur='if(this.value==""){this.value="search"}' />
+		</header>
+		<section class="user">
+			<div class="profile-img">
+				<img src="img/user.png" alt="" height="40" width="40" />
+				<p id="userinfo">Get userinfo fail!</p>
+			</div>
+			<div class="profile-img"
+				style="position: absolute; top: 40%; left: 36%; text-align: center;">
+				<p id="Msg" style="color: red;"></p>
+			</div>
+			<div class="buttons">
+				<button class="ico-font">&#9206;</button>
+				<span class="button">Live</span> <span class="button">Help</span> <span
+					class="button blue"><a href="javascript:AjaxLogout();">Logout</a></span>
+			</div>
+		</section>
+	</div>
+	<nav>
+		<ul>
+			<li><a href="stat.html"><span class="icon">&#128202;</span>
+					Statistics</a></li>
+			<li class="section"><a href="KeyWords.html"><span
+					class="icon">&#128101;</span> KeyWords</a></li>
+			<li><a href="Automation.html"><span class="icon">&#9881;</span>Automation</a>
+			</li>
+		</ul>
+	</nav>
+	<section class="content" style="height: 88%;">
+		<section class="widget"
+			style="position: relative; top: -85px; height: 118%;">
+			<header>
+				<span class="icon">&#128100;</span>
+				<hgroup>
+					<h1>KeyWords</h1>
+					<h2>autoTest Framework KeyWords and Usage method</h2>
+				</hgroup>
+				<aside>
+					<span> <select name="select_type" id="select_t"
+						onchange="getKeyWrods();">
+							<option value="-1">选择类型</option>
+							<option value="0">系统关键字</option>
+							<option value="1">UI关键字</option>
+							<option value="2">接口关键字</option>
+							<option value="3">APP关键字</option>
+					</select>
+					</span>
+				</aside>
+			</header>
+			<div class="page">
+				<a id="back" href="javascript:LastPage();">﹤back</a><a>&nbsp&nbsp</a><a
+					id="next" href="javascript:NextPage();">next﹥</a>
+			</div>
+			<div class="content" style="position: relative; height: 84%;">
+				<table id="myTable" style="position: relative; top: -10px;">
+					<thead>
+						<tr>
+							<th class="avatar">Index</th>
+							<th>Name</th>
+							<th>Describe</th>
+							<th>Usage</th>
+						</tr>
+					</thead>
+					<tbody id="keyWords">
+						<tr>
+							<td class="avatar">1</td>
+							<td>系统提示</td>
+							<td>查询结果</td>
+							<td>查询结果为空，请检查查询条件</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</section>
+</body>
+</html>
