@@ -7,6 +7,8 @@ var sheet = '<a class="nav-item nav-link" data-toggle="tab" href="#sheet1" role=
 var tableshow = '<div class="tab-pane fade active show" id="sheet1" role="tabpanel" aria-labelledby="custom-nav-home-tab"><div class="card"><div class="card-body" style="padding-top:20px;"><table id="bootstrap-data-table" class="table table-striped table-bordered"><thead><tr><th>用例名</th><th>关键字</th><th>p1</th><th>p2</th><th>p3</th><th>状态</th></tr></thead><tbody>bodycontent</tbody></table></div></div></div>';
 var table = '<div class="tab-pane fade" id="sheet1" role="tabpanel" aria-labelledby="custom-nav-home-tab"><div class="card"><div class="card-body" style="padding-top:20px;"><table id="bootstrap-data-table" class="table table-striped table-bordered"><thead><tr><th>用例名</th><th>关键字</th><th>p1</th><th>p2</th><th>p3</th><th>状态</th></tr></thead><tbody>bodycontent</tbody></table></div></div></div>';
 
+var resdetail = '<div class="card" style="border: 2px solid;border-color: #41d841;"><div class="card-header"><h4>casename</h4></div><div class="card-body"><ul class="nav nav-pills mb-3" id="pills-tab" role="tablist"><li class="nav-item"><a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#click-home" role="tab" aria-controls="pills-home" aria-selected="false">关键字</a></li><li class="nav-item"><a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#click-profile" role="tab" aria-controls="pills-profile" aria-selected="false">参数</a></li><li class="nav-item"><a class="nav-link active show" id="pills-contact-tab" data-toggle="pill" href="#click-contact" role="tab" aria-controls="pills-contact" aria-selected="true">实际结果</a></li></ul><div class="tab-content" id="pills-tabContent"><div class="tab-pane fade" id="click-home" role="tabpanel" aria-labelledby="pills-home-tab"><h3>keyword</h3><p>keywordname</p> </div><div class="tab-pane fade" id="click-profile" role="tabpanel" aria-labelledby="pills-profile-tab"><p>params</p></div><div class="tab-pane fade show active" id="click-contact" role="tabpanel" aria-labelledby="pills-contact-tab"><h3>结果</h3><p>actualresult</p></div></div></div></div>';
+
 
 jQuery(document).ready(
 		function($) {
@@ -408,6 +410,91 @@ function getDetails(){
 	}
 }
 
+function getResDetails(){
+	if(get_cookie('caseid')==""){
+		document.getElementById('sheets').innerHTML = '<div id="msgwarn" class="sufee-alert alert with-close alert-warning alert-dismissible fade show" style="display: table-footer-group;margin-left: auto;left: 0;top: 15px;margin-right: auto;width: 400px;right: 0;text-align: center;"><span class="badge badge-pill badge-warning">info</span>&emsp;您还没有上传或者选择用例<a href="./cases.html">上传/查看</a></div>';
+	}else{
+		$.ajax({
+		url : "../user/getdetails?caseid="+get_cookie('caseid'),
+		type : 'GET',
+		data : null,
+		// 告诉jQuery不要去处理发送的数据
+		processData : false,
+		// 告诉jQuery不要去设置Content-Type请求头
+		contentType : false,
+		beforeSend : function() {
+			showmsg(3, "正在加载用例详情");
+		},
+		success : function(responseStr) {
+			var obj = eval("(" + responseStr + ")");
+			if (obj["status"] == 200) {
+				var cases = obj["cases"];
+				if (cases.length<1){
+					document.getElementById('sheets').innerHTML = '<div id="msgwarn" class="sufee-alert alert with-close alert-warning alert-dismissible fade show" style="display: table-footer-group;margin-left: auto;left: 0;top: 15px;margin-right: auto;width: 400px;right: 0;text-align: center;"><span class="badge badge-pill badge-warning">info</span>&emsp;您还没有上传或者选择用例<a href="./cases.html">上传/查看</a></div>';
+				}else{
+					var s="";
+					var sheetnum = 1;
+					var t = "";
+					var c = "";
+					for (var i=0;i<cases.length;i++){
+						if(cases[i]["type"]==3){
+							if (c!=""){
+								c = t.replace(/bodycontent/g,"sheet"+c);
+								document.getElementById('tabContent').innerHTML += c;
+							}
+							if(i==0){
+								s = sheetshow.replace(/sheet1/g,"sheet"+sheetnum);
+								s = s.replace(/sheetname/g,cases[i]["caseName"]);
+								t = tableshow.replace(/sheet1/g,"sheet"+sheetnum);
+							}else{
+								s = sheet.replace(/sheet1/g,"sheet"+sheetnum);
+								s = s.replace(/sheetname/g,cases[i]["caseName"]);
+								t = table.replace(/sheet1/g,"sheet"+sheetnum);
+							}
+							document.getElementById('sheets').innerHTML += s;
+							
+							sheetnum++;
+							c = "";
+						}else{
+							c += '<tr role="row" class="odd" ondblclick="showtr(this)">'
+                            c += '<td class="cccc">'+getValue(cases[i],"caseName") +'</td>';
+                            c += '<td class="cccc">'+getValue(cases[i],"keyWord")+'</td>';
+                            c += '<td>'+getValue(cases[i],"param1")+'</td>';
+                            c += '<td>'+getValue(cases[i],"param2")+'</td>';
+							c += '<td>'+getValue(cases[i],"param3")+'</td>';
+							if (getValue(cases[i],"status")=="N/A" || getValue(cases[i],"status")=="")
+								c += '<td  class="NA">N/A</td>';
+							else
+								if (getValue(cases[i],"status")=="PASS")
+									c += '<td  class="PASS">PASS</td>';
+								else
+									c += '<td  class="FAIL">FAIL</td>';
+								
+							r = resdetail.replace(/click-home/g,"click-home"+i);
+							r = r.replace(/click-contact/g,"click-contact"+i);
+							r = r.replace(/click-profile/g,"click-profile"+i);
+                            c += '</tr><tr ondblclick="showtrt(this)" style="display:none;"><td colspan="6">'+r+'</td></tr><tr></tr>';
+						}
+					}
+					if (c!=""){
+						c = t.replace(/bodycontent/g,"sheet"+c);
+						document.getElementById('tabContent').innerHTML += c;
+					}
+					$('#bootstrap-data-table-export').DataTable();
+					showmsg(1, "用例加载完成！");
+				}
+			} else {
+				showmsg(2, obj["msg"]);
+			}
+		},
+		error : function(responseStr) {
+			showmsg(2, "服务器忙，请稍后重试！");
+		}
+	});
+	}
+}
+
+
 function edit(casid){
 	document.cookie = 'caseid=' + casid;
 	location.href = "./edit.html";
@@ -440,6 +527,20 @@ function deatails(caseid){
 			showmsg(2, "服务器忙，请稍后重试！");
 		}
 	});
+}
+
+function showtr(ele){
+	if(ele.nextElementSibling.style.display == "")
+		ele.nextElementSibling.style.display = "none";
+	else
+		ele.nextElementSibling.style.display = "";
+}
+
+function showtrt(ele){
+	if(ele.style.display == "")
+		ele.style.display = "none";
+	else
+		ele.style.display = "";
 }
 
 function getValue(obj,key){

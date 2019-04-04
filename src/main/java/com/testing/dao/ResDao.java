@@ -72,13 +72,45 @@ public class ResDao implements IResDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Cases> getRes(Integer caseid,Integer userid) {
+	public Integer Delete(Integer resid,Integer userid) {
 		Session session = sessionFactory.getCurrentSession();
 
-		List<Cases> cases = session.createQuery("from Res where id = :id and userid = :userid")
-				.setParameter("id", caseid).setParameter("userid", userid).list();
-		if(cases.size()>0) {
-			return cases;
+		List<Cases> ress = session.createQuery("from Res where id = :resid and userid = :userid")
+				.setParameter("resid", resid).setParameter("userid", userid).list();
+		if(ress.size()>0) {
+			for(int i=0;i<ress.size();i++) {
+				session.delete(ress.get(i));
+			}
+		}else {
+			return 0;
+		}
+		session.flush();
+		return 1;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Res> getRes(Integer resid,Integer userid) {
+		Session session = sessionFactory.getCurrentSession();
+
+		List<Res> ress = session.createQuery("from Res where id = :id and userid = :userid")
+				.setParameter("id", resid).setParameter("userid", userid).list();
+		if(ress.size()>0) {
+			return ress;
+		}else {
+			return null;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Res> getRess(Integer userid) {
+		Session session = sessionFactory.getCurrentSession();
+
+		List<Res> ress = session.createQuery("from Res where userid = :userid")
+				.setParameter("userid", userid).list();
+		if(ress.size()>0) {
+			return ress;
 		}else {
 			return null;
 		}

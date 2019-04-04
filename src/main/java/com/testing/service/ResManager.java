@@ -1,9 +1,12 @@
 package com.testing.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.testing.dao.ResDao;
+import com.testing.entity.Cases;
 import com.testing.entity.Res;
 
 @Service("resService")
@@ -33,9 +36,20 @@ public class ResManager implements IResManager {
 	}
 	
 	@Override
+	public Integer Delete(Integer resid,Integer userid) {
+		// TODO Auto-generated method stub
+		return resDao.Delete(resid,userid);
+	}
+	
+	@Override
 	public Integer getResCount() {
 		// TODO Auto-generated method stub
 		return resDao.getResCount();
+	}
+	
+	@Override
+	public List<Res> getRess(Integer userid) {
+		return resDao.getRess(userid);
 	}
 
 }

@@ -18,14 +18,11 @@
 <link rel="stylesheet" href="assets/css/themify-icons.css">
 <link rel="stylesheet" href="assets/css/pe-icon-7-filled.css">
     <link rel="stylesheet" href="assets/css/flag-icon.min.css"><link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
-
-
 </head>
-<body>
+<body onload="javascript:getResDetails();">
     <!-- Left Panel -->
 
     <aside id="left-panel" class="left-panel">
@@ -193,8 +190,8 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">UI Elements</a></li>
-                                    <li class="active">Tab</li>
+                                    <li><a href="#">Table</a></li>
+                                    <li class="active">Data table</li>
                                 </ol>
                             </div>
                         </div>
@@ -202,10 +199,38 @@
                 </div>
             </div>
         </div>
+		<div class="content">
+            <div class="animated fadeIn">
+                <div class="buttons">
 
-        <div class="content">
+                    <!-- Left Block -->
+                    <div id="row" class="row">
+                        <div class="col-md-6" style="max-width: 100%;flex: auto;">
+							<div class="card">
+                            <div class="card-body">
+                                
+                                <div class="custom-tab">
 
-                <div class="row">
+                                        <nav>
+                                            <div id="sheets" class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content pl-3 pt-2" id="tabContent" style="padding: 1px!important;">
+                                            
+                                        </div>
+
+                                    </div>
+                                        
+                                     </div>
+                                </div><!-- /# card -->
+                            
+                        </div>
+						
+                    </div><!-- .row -->
+                </div> <!-- .buttons -->
+				
+				<div class="row">
                     <div class="col-lg-6">
 						<div class="card" style="
     border: 2px solid;
@@ -285,7 +310,7 @@
 											</li>
 										</ul>
 										<div class="tab-content" id="pills-tabContent">
-											<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+											<div class="tab-pane fade" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 												<h3>Home</h3>
 												<p>
 													Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste nobis, fugit pariatur minima! Dolorum modi pariatur aperiam quas odio nulla, illo necessitatibus dolor a.
@@ -297,7 +322,7 @@
 													Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste nobis, fugit pariatur minima! Dolorum modi pariatur aperiam quas odio nulla, illo necessitatibus dolor a.
 												</p>
 											</div>
-											<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+											<div class="tab-pane fade show active" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 												<h3>Cotanct</h3>
 												<p>
 													Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste nobis, fugit pariatur minima! Dolorum modi pariatur aperiam quas odio nulla, illo necessitatibus dolor a.
@@ -349,34 +374,54 @@
 						</div>
                     </div>
                 </div>
-                    <!-- /# column -->
-            </div><!-- .content -->
+            </div><!-- .animated -->
+        </div><!-- .content -->
 
-            <div class="clearfix"></div>
+        <div class="clearfix"></div>
 
-            <footer class="site-footer">
-                <div class="footer-inner bg-white">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            Copyright &copy; 2018 Ela Admin. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-                        </div>
-                        <div class="col-sm-6 text-right"> Designed by Colorlib
-                        </div>
+        <footer class="site-footer">
+            <div class="footer-inner bg-white">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Copyright &copy; 2018 Ela Admin. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+                    </div>
+                    <div class="col-sm-6 text-right"> Designed by Colorlib
                     </div>
                 </div>
-            </footer>
+            </div>
+        </footer>
+
+    </div><!-- /#right-panel -->
+
+    <!-- Right Panel -->
+	
+	   <!-- Scripts -->
+    <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.matchHeight.min.js"></script>
+    <script src="assets/js/main.js"></script>
 
 
-        </div><!-- /#right-panel -->
+    <script src="assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="assets/js/init/datatables-init.js"></script>
 
-        <!-- Right Panel -->
 
-        <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
-        <script src="assets/js/popper.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.matchHeight.min.js"></script>
-        <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('#bootstrap-data-table-export').DataTable();
+      } );
+  </script>
+
+</body>
+</html>
 
 
-    </body>
-    </html>

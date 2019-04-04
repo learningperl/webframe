@@ -11,8 +11,12 @@ public interface IResDao {
 
 	Integer Delete(Integer caseid);
 
-	List<Cases> getRes(Integer caseid, Integer userid);
+	List<Res> getRes(Integer caseid, Integer userid);
 
 	Integer getResCount();
+
+	List<Res> getRess(Integer userid);
+
+	Integer Delete(Integer caseid, Integer userid);
 
 }

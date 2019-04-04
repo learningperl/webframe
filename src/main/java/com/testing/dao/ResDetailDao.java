@@ -72,10 +72,10 @@ public class ResDetailDao implements IResDetailDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ResDetail> getDetails(Integer caseid) {
+	public List<ResDetail> getDetails(Integer resid) {
 		Session session = sessionFactory.getCurrentSession();
-		List<ResDetail> details = session.createQuery("from ResDetail where caseid = :caseid")
-				.setParameter("caseid", 1).list();
+		List<ResDetail> details = session.createQuery("from ResDetail where resid = :resid")
+				.setParameter("resid", resid).list();
 		if (details.size() > 0) {
 			return details;
 		} else {
