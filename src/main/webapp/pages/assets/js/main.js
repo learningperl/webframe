@@ -37,8 +37,7 @@ jQuery(document).ready(
 					}
 				});
 			}
-			document.getElementById("user").src = "images/avatar/"
-					+ get_cookie("img");
+			//document.getElementById("user").src = "images/avatar/"+ get_cookie("img");
 
 			"use strict";
 
@@ -389,6 +388,132 @@ function showRess(){
 				c = c.replace(/createtime/g,
 						getLocalTime(reses[i]['startTime']));
 				document.getElementById("row").innerHTML += c;
+			}
+		}
+	}
+}
+
+function getReport() {
+	
+	AjaxURL = "../user/getress";
+	$.ajax({
+		url : AjaxURL,
+		type : 'GET',
+		data : null,
+		// 告诉jQuery不要去处理发送的数据
+		processData : false,
+		async : false,
+		// 告诉jQuery不要去设置Content-Type请求头
+		contentType : false,
+		beforeSend : function() {
+			// document.getElementById("Msg").innerText = "正在上传，请稍等...";
+		},
+		success : function(responseStr) {
+			var obj = eval("(" + responseStr + ")");
+			if (obj["status"] == 200) {
+				var ress = obj['ress'];
+				reses = ress;
+				for (var i = 0; i < ress.length; i++) {
+					var r = '<option value ="'+ress[i]["id"]+'">'+ress[i]["resName"]+'</option>';
+					document.getElementById("ress").innerHTML += r;
+				}
+				showReport();
+			} else {
+				showmsg(2, obj["msg"]);
+			}
+		},
+		error : function(responseStr) {
+			showmsg(2, "服务器忙，请稍后重试！");
+		}
+	});
+	
+}
+
+function showReport(){
+	var resid = $("#ress option:selected").val();
+	var html='<li class="list-group-item"><a href="#"> <i class="fa fa-envelope-o"></i> Name <span class="badge badge-primary pull-right">Count</span></a></li><li class="list-group-item"><a href="#"> <i class="fa fa-bell-o"></i> Rate <span class="badge badge-success pull-right">passrate</span></a></li><li class="list-group-item"><a href="#"> <i class="fa fa-tasks"></i> PASS | FAIL | N/A <span class="badge badge-warning pull-right r-activity">na </span><span class="badge badge-danger pull-right">fail </span><span class="badge badge-success pull-right">pass </span></a></li><li class="list-group-item"><a href="#"> <i class="fa fa-clock-o"></i> stattime <span style="float:right;font-size: 13px;">stime</span></a></li><li class="list-group-item"><a href="#"> <i class="fa fa-clock-o"></i> endtime <span style="float:right;font-size: 13px;">etime</span></a></li>';
+	if(resid==0){
+		html = html.replace(/Name/g, reses[0]['resName']);
+		html = html.replace(/Count/g, reses[0]['count']);
+		html = html.replace(/passrate/g, (reses[0]['pass']*100/reses[0]['count']).toFixed(2) + "%");
+		html = html.replace(/pass/g, reses[0]['pass']);
+		html = html.replace(/fail/g, reses[0]['fail']);
+		html = html.replace(/na/g, reses[0]['count']-reses[0]['pass']-reses[0]['fail']);
+		html = html.replace(/stime/g, getLocalTime(reses[0]['startTime']));
+		html = html.replace(/etime/g, getLocalTime(reses[0]['endTime']));
+		document.getElementById("stastic").innerHTML = html;
+		
+		// Pie chart flotPie1
+		var piedata = [
+			{ label: "PASS", data: [[1,reses[0]['pass']*100/reses[0]['count']]], color: '#66bb6a'},
+			{ label: "FAIL", data: [[1,reses[0]['fail']*100/reses[0]['count']]], color: '#ef5350'},
+			{ label: "N/A", data: [[1,(reses[0]['count']-reses[0]['fail']-reses[0]['pass'])*100/reses[0]['count']]], color: '#ffc107'}
+		];
+
+		$.plot('#flotPie1', piedata, {
+			series: {
+				pie: {
+					show: true,
+					radius: 1,
+					innerRadius: 0.65,
+					label: {
+						show: true,
+						radius: 2/3,
+						threshold: 1
+					},
+					stroke: {
+						width: 0
+					}
+				}
+			},
+			grid: {
+				hoverable: true,
+				clickable: true
+			}
+		});
+            // Pie chart flotPie1  End
+	}else{
+		for (var i=0;i<reses.length;i++){
+			if(reses[i]['id']==resid){
+				html = html.replace(/Name/g, reses[i]['resName']);
+				html = html.replace(/Count/g, reses[i]['count']);
+				html = html.replace(/passrate/g, (reses[i]['pass']*100/reses[i]['count']).toFixed(2) + "%");
+				html = html.replace(/pass/g, reses[i]['pass']);
+				html = html.replace(/fail/g, reses[i]['fail']);
+				html = html.replace(/na/g, reses[i]['count']-reses[i]['pass']-reses[i]['fail']);
+				html = html.replace(/stime/g, getLocalTime(reses[i]['startTime']));
+				html = html.replace(/etime/g, getLocalTime(reses[i]['endTime']));
+				document.getElementById("stastic").innerHTML = html;
+				
+				// Pie chart flotPie1
+				var piedata = [
+					{ label: "PASS", data: [[1,reses[i]['pass']*100/reses[i]['count']]], color: '#66bb6a'},
+					{ label: "FAIL", data: [[1,reses[i]['fail']*100/reses[i]['count']]], color: '#ef5350'},
+					{ label: "N/A", data: [[1,(reses[i]['count']-reses[i]['fail']-reses[i]['pass'])*100/reses[i]['count']]], color: '#ffc107'}
+				];
+
+				$.plot('#flotPie1', piedata, {
+					series: {
+						pie: {
+							show: true,
+							radius: 1,
+							innerRadius: 0.65,
+							label: {
+								show: true,
+								radius: 2/3,
+								threshold: 1
+							},
+							stroke: {
+								width: 0
+							}
+						}
+					},
+					grid: {
+						hoverable: true,
+						clickable: true
+					}
+				});
+			// Pie chart flotPie1  End
 			}
 		}
 	}
