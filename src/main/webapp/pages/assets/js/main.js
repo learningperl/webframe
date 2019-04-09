@@ -7,8 +7,10 @@ var sheet = '<a class="nav-item nav-link" data-toggle="tab" href="#sheet1" role=
 var tableshow = '<div class="tab-pane fade active show" id="sheet1" role="tabpanel" aria-labelledby="custom-nav-home-tab"><div class="card"><div class="card-body" style="padding-top:20px;"><table id="bootstrap-data-table" class="table table-striped table-bordered"><thead><tr><th>用例名</th><th>关键字</th><th>p1</th><th>p2</th><th>p3</th><th>状态</th></tr></thead><tbody>bodycontent</tbody></table></div></div></div>';
 var table = '<div class="tab-pane fade" id="sheet1" role="tabpanel" aria-labelledby="custom-nav-home-tab"><div class="card"><div class="card-body" style="padding-top:20px;"><table id="bootstrap-data-table" class="table table-striped table-bordered"><thead><tr><th>用例名</th><th>关键字</th><th>p1</th><th>p2</th><th>p3</th><th>状态</th></tr></thead><tbody>bodycontent</tbody></table></div></div></div>';
 
-var resdetail = '<div class="card" style="border: 2px solid;border-color: #41d841;"><div class="card-header"><h4>casename</h4></div><div class="card-body"><ul class="nav nav-pills mb-3" id="pills-tab" role="tablist"><li class="nav-item"><a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#click-home" role="tab" aria-controls="pills-home" aria-selected="false">关键字</a></li><li class="nav-item"><a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#click-profile" role="tab" aria-controls="pills-profile" aria-selected="false">参数</a></li><li class="nav-item"><a class="nav-link active show" id="pills-contact-tab" data-toggle="pill" href="#click-contact" role="tab" aria-controls="pills-contact" aria-selected="true">实际结果</a></li></ul><div class="tab-content" id="pills-tabContent"><div class="tab-pane fade" id="click-home" role="tabpanel" aria-labelledby="pills-home-tab"><h3>keyword</h3><p>keywordname</p> </div><div class="tab-pane fade" id="click-profile" role="tabpanel" aria-labelledby="pills-profile-tab"><p>params</p></div><div class="tab-pane fade show active" id="click-contact" role="tabpanel" aria-labelledby="pills-contact-tab"><h3>结果</h3><p>actualresult</p></div></div></div></div>';
+var resdetail = '<div class="card" style="border: 2px solid;border-color: #41d841;"><div class="card-header"><h4>casename</h4></div><div class="card-body">';
+var resbody='<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist"><li class="nav-item"><a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#click-home" role="tab" aria-controls="pills-home" aria-selected="false">关键字</a></li><li class="nav-item"><a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#click-profile" role="tab" aria-controls="pills-profile" aria-selected="false">参数</a></li><li class="nav-item"><a class="nav-link active show" id="pills-contact-tab" data-toggle="pill" href="#click-contact" role="tab" aria-controls="pills-contact" aria-selected="true">实际结果</a></li></ul><div class="tab-content" id="pills-tabContent"><div class="tab-pane fade" id="click-home" role="tabpanel" aria-labelledby="pills-home-tab"><p>keywordname</p> </div><div class="tab-pane fade" id="click-profile" role="tabpanel" aria-labelledby="pills-profile-tab"><p>params</p></div><div class="tab-pane fade show active" id="click-contact" role="tabpanel" aria-labelledby="pills-contact-tab"><p>actualresult</p></div></div>';
 
+var reses = null;
 
 jQuery(document).ready(
 		function($) {
@@ -300,6 +302,98 @@ function getCases() {
 	});
 }
 
+function getRess() {
+	var AjaxURL = "../user/getress";
+	$.ajax({
+		url : AjaxURL,
+		type : 'GET',
+		data : null,
+		// 告诉jQuery不要去处理发送的数据
+		processData : false,
+		// 告诉jQuery不要去设置Content-Type请求头
+		contentType : false,
+		beforeSend : function() {
+			// document.getElementById("Msg").innerText = "正在上传，请稍等...";
+		},
+		success : function(responseStr) {
+			var obj = eval("(" + responseStr + ")");
+			if (obj["status"] == 200) {
+				var ress = obj['ress'];
+				reses = ress;
+				for (var i = 0; i < ress.length; i++) {
+					var c = onecase.replace(/caseid/g, ress[i]['id']);
+					c = c.replace(/casename/g, ress[i]['resName']);
+					c = c.replace(/type/g, ress[i]['type']);
+					c = c.replace(/createtime/g,
+							getLocalTime(ress[i]['startTime']));
+					document.getElementById("row").innerHTML += c;
+				}
+			} else {
+				showmsg(2, obj["msg"]);
+			}
+		},
+		error : function(responseStr) {
+			showmsg(2, "服务器忙，请稍后重试！");
+		}
+	});
+	
+	AjaxURL = "../user/getcases";
+	$.ajax({
+		url : AjaxURL,
+		type : 'GET',
+		data : null,
+		// 告诉jQuery不要去处理发送的数据
+		processData : false,
+		// 告诉jQuery不要去设置Content-Type请求头
+		contentType : false,
+		beforeSend : function() {
+			// document.getElementById("Msg").innerText = "正在上传，请稍等...";
+		},
+		success : function(responseStr) {
+			var obj = eval("(" + responseStr + ")");
+			if (obj["status"] == 200) {
+				var ress = obj['cases'];
+				for (var i = 0; i < ress.length; i++) {
+					var r = '<option value ="'+ress[i]["id"]+'">'+ress[i]["caseName"]+'</option>';
+					document.getElementById("cases").innerHTML += r;
+				}
+			} else {
+				showmsg(2, obj["msg"]);
+			}
+		},
+		error : function(responseStr) {
+			showmsg(2, "服务器忙，请稍后重试！");
+		}
+	});
+	
+}
+
+function showRess(){
+	var caseid = $("#cases option:selected").val();
+	document.getElementById("row").innerHTML = '<div class="col-md-6"><div class="card"><div class="card-body" style="height: 132px;text-align: center;"><div style="border: 1px dashed #ccc;height: 95px;top: center;/* position: relative; */"><img src="images/upload.jpg" style="width: auto;float:left;top: 11px;position: relative;max-height: 71px;"><input id="filename" class="btn btn-outline-info" type="text" value="文件名" style="top: 26px;position: relative;text-align:left;" readonly="readonly"><input id="u1" class="btn btn-outline-info" type="button" value="选择用例" style="float: right;height: 95px;display:block;" onclick="javascript:document.getElementById(\'upload\').click();"><input id="u2" class="btn btn-outline-success" type="button" value="上传用例" style="float: right;height: 95px;display:none;" onclick="javascript:Upload();"><input id="upload" type="file" name="fileUpload" accept=".xls,.xlsx" style="display:none;" onchange="javascript:onUpload();"> </div></div></div><!-- /# card --></div>'
+	if(caseid==0){
+		for (var i = 0; i < reses.length; i++) {
+			var c = onecase.replace(/caseid/g, reses[i]['id']);
+			c = c.replace(/casename/g, reses[i]['resName']);
+			c = c.replace(/type/g, reses[i]['type']);
+			c = c.replace(/createtime/g,
+					getLocalTime(reses[i]['startTime']));
+			document.getElementById("row").innerHTML += c;
+		}
+	}else{
+		for (var i = 0; i < reses.length; i++) {
+			if(reses[i]['id']==caseid){
+				var c = onecase.replace(/caseid/g, reses[i]['id']);
+				c = c.replace(/casename/g, reses[i]['resName']);
+				c = c.replace(/type/g, reses[i]['type']);
+				c = c.replace(/createtime/g,
+						getLocalTime(reses[i]['startTime']));
+				document.getElementById("row").innerHTML += c;
+			}
+		}
+	}
+}
+
 function delCase(caseid) {
 	var AjaxURL = "../user/delcases?id="+caseid;
 //	formData = new FormData();
@@ -423,14 +517,14 @@ function getResDetails(){
 		// 告诉jQuery不要去设置Content-Type请求头
 		contentType : false,
 		beforeSend : function() {
-			showmsg(3, "正在加载用例详情");
+			showmsg(3, "正在加载详细结果");
 		},
 		success : function(responseStr) {
 			var obj = eval("(" + responseStr + ")");
 			if (obj["status"] == 200) {
 				var cases = obj["cases"];
 				if (cases.length<1){
-					document.getElementById('sheets').innerHTML = '<div id="msgwarn" class="sufee-alert alert with-close alert-warning alert-dismissible fade show" style="display: table-footer-group;margin-left: auto;left: 0;top: 15px;margin-right: auto;width: 400px;right: 0;text-align: center;"><span class="badge badge-pill badge-warning">info</span>&emsp;您还没有上传或者选择用例<a href="./cases.html">上传/查看</a></div>';
+					document.getElementById('sheets').innerHTML = '<div id="msgwarn" class="sufee-alert alert with-close alert-warning alert-dismissible fade show" style="display: table-footer-group;margin-left: auto;left: 0;top: 15px;margin-right: auto;width: 400px;right: 0;text-align: center;"><span class="badge badge-pill badge-warning">info</span>&emsp;您还没有选择要查看的结果文件<a href="./cases.html">上传/查看</a></div>';
 				}else{
 					var s="";
 					var sheetnum = 1;
@@ -469,11 +563,28 @@ function getResDetails(){
 									c += '<td  class="PASS">PASS</td>';
 								else
 									c += '<td  class="FAIL">FAIL</td>';
-								
-							r = resdetail.replace(/click-home/g,"click-home"+i);
-							r = r.replace(/click-contact/g,"click-contact"+i);
-							r = r.replace(/click-profile/g,"click-profile"+i);
-                            c += '</tr><tr ondblclick="showtrt(this)" style="display:none;"><td colspan="6">'+r+'</td></tr><tr></tr>';
+							
+							if(cases[i]["type"]==2){
+								var r = resdetail + resbody;
+								r = r.replace(/click-home/g,"click-home"+i);
+								r = r.replace(/click-contact/g,"click-contact"+i);
+								r = r.replace(/click-profile/g,"click-profile"+i);
+								r = r.replace(/casename/g,getValue(cases[i],"caseName"));
+								var param = "param1："+getValue(cases[i],"param1")+"</br>param2："+getValue(cases[i],"param2") + "</br>param3："+getValue(cases[i],"param3");
+								r = r.replace(/params/g,param);
+								r = r.replace(/keywordname/g,getValue(cases[i],"keyWord"));
+								var act = "PASS";
+								if (getValue(cases[i],"actual")!=""){
+									act = getValue(cases[i],"actual");
+								}
+								r = r.replace(/actualresult/g,act);
+								c += '</tr><tr ondblclick="showtrt(this)" style="display:none;"><td colspan="6">'+r+'</div></div></td></tr><tr></tr>';
+							}else{
+								var r = resdetail;
+								r = r.replace(/casename/g,getValue(cases[i],"caseName"));
+								r = r + "这是分组信息"
+								c += '</tr><tr ondblclick="showtrt(this)" style="display:none;"><td colspan="6">'+r+'</div></div></td></tr><tr></tr>';
+							}
 						}
 					}
 					if (c!=""){
@@ -481,7 +592,7 @@ function getResDetails(){
 						document.getElementById('tabContent').innerHTML += c;
 					}
 					$('#bootstrap-data-table-export').DataTable();
-					showmsg(1, "用例加载完成！");
+					showmsg(1, "结果加载完成！");
 				}
 			} else {
 				showmsg(2, obj["msg"]);

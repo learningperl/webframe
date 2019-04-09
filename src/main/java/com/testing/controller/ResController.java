@@ -30,7 +30,6 @@ public class ResController {
 	public void ResIndex(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-
 		HttpSession session = request.getSession();
 //		session.setMaxInactiveInterval(36000);
 		String userid = "null";
@@ -44,10 +43,11 @@ public class ResController {
 		} else {
 			userid = userid.substring(5);
 			List<Res> list = resService.getRess(Integer.parseInt(userid));
+			
 			if(list==null) {
-				json = "{\"status\":201,\"msg\":\"用户暂无用例\"}";
+				json = "{\"status\":201,\"msg\":\"暂无结果文件\"}";
 			}else {
-				json = "{\"status\":200,\"msg\":\"用例获取成功\",\"ress\":";
+				json = "{\"status\":200,\"msg\":\"结果获取成功\",\"ress\":";
 				String ress = JSONObject.toJSONString(list);
 				json += ress;
 				json += "}";
@@ -93,7 +93,7 @@ public class ResController {
 					json = "{\"status\":201,\"msg\":\"要删除的结果不存在\"}";
 				}else {
 					detailService.Delete(resid);
-					json = "{\"status\":200,\"msg\":\"用例删除成功\"}";
+					json = "{\"status\":200,\"msg\":\"结果删除成功\"}";
 				}
 			}
 		}
@@ -133,7 +133,7 @@ public class ResController {
 			if(list==null) {
 				json = "{\"status\":201,\"msg\":\"用例结果不存在\"}";
 			}else {
-				json = "{\"status\":200,\"msg\":\"用例获取成功\",\"ress\":";
+				json = "{\"status\":200,\"msg\":\"结果获取成功\",\"ress\":";
 				String ress = JSONObject.toJSONString(list);
 				json += ress;
 				json += "}";

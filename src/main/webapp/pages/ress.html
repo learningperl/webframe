@@ -1,4 +1,4 @@
-<!doctype html>
+<html style="height: 100%;">
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
@@ -18,11 +18,14 @@
 <link rel="stylesheet" href="assets/css/themify-icons.css">
 <link rel="stylesheet" href="assets/css/pe-icon-7-filled.css">
     <link rel="stylesheet" href="assets/css/flag-icon.min.css"><link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+
 </head>
-<body onload="javascript:getResDetails();">
+<body style="height: 90%;" onload="javascript:getRess();">
     <!-- Left Panel -->
 
     <aside id="left-panel" class="left-panel">
@@ -38,7 +41,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>自动化测试</a>
                         <ul class="sub-menu children dropdown-menu">                            <li><i class="fa fa-puzzle-piece"></i><a href="./cases.html">用例中心</a></li>
 
-                            <li><i class="fa fa-id-card-o"></i><a href="./edit.html">用例编辑</a></li>
+                            <li><i class="fa fa-id-card-o"></i><a href="./edit.html">用例详情</a></li>
 							<li><i class="fa fa-id-card-o"></i><a href="./keywords.html">关键字</a></li>
                         </ul>
                     </li>
@@ -61,6 +64,7 @@
 						</li>
  
                 </ul>
+				
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside><!-- /#left-panel -->
@@ -69,7 +73,7 @@
 
     <!-- Right Panel -->
 
-    <div id="right-panel" class="right-panel">
+    <div id="right-panel" class="right-panel" style="height: 90%;">
 
         <!-- Header-->
         <header id="header" class="header">
@@ -80,6 +84,7 @@
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
             </div>
+			
             <div class="top-right">
                 <div class="header-menu">
                     <div class="header-left">
@@ -173,6 +178,7 @@
                     </div>
                 </div>
             </div>
+
         </header><!-- /header -->
         <!-- Header-->
 
@@ -191,40 +197,38 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">Dashboard</a></li>
-                                    <li><a href="#">Table</a></li>
-                                    <li class="active">Data table</li>
+                                    <li><a href="#">UI Elements</a></li>
+                                    <li class="active">Buttons</li>
                                 </ol>
                             </div>
                         </div>
+						<select class="dropdown-toggle btn btn-primary" style="float: right;min-height: 40px;margin: 5px 5px;" id="cases" onchange="javascript:showRess();">
+						  <option value ="0">筛选用例</option>
+						</select>
                     </div>
                 </div>
             </div>
         </div>
-		<div class="content">
+
+        <div class="content">
             <div class="animated fadeIn">
                 <div class="buttons">
 
                     <!-- Left Block -->
                     <div id="row" class="row">
-                        <div class="col-md-6" style="max-width: 100%;flex: auto;">
+                        <div class="col-md-6">
 							<div class="card">
-                            <div class="card-body">
                                 
-                                <div class="custom-tab">
-
-                                        <nav>
-                                            <div id="sheets" class="nav nav-tabs" id="nav-tab" role="tablist">
-                                                
-                                            </div>
-                                        </nav>
-                                        <div class="tab-content pl-3 pt-2" id="tabContent" style="padding: 1px!important;">
-                                            
-                                        </div>
-
-                                    </div>
-                                        
-                                     </div>
-                                </div><!-- /# card -->
+                                <div class="card-body" style="height: 132px;text-align: center;">
+									<div style="border: 1px dashed #ccc;height: 95px;top: center;/* position: relative; */">
+										
+										<img src="images/upload.jpg" style="width: auto;float:left;top: 11px;position: relative;max-height: 71px;">
+										<input id="filename" class="btn btn-outline-info" type="text" value="文件名" style="top: 26px;position: relative;text-align:left;" readonly="readonly">
+										<input id="u1" class="btn btn-outline-info" type="button" value="选择用例" style="float: right;height: 95px;display:block;" onclick="javascript:document.getElementById('upload').click();">
+										<input id="u2" class="btn btn-outline-success" type="button" value="上传用例" style="float: right;height: 95px;display:none;" onclick="javascript:Upload();">
+										<input id="upload" type="file" name="fileUpload" accept=".xls,.xlsx" style="display:none;" onchange="javascript:onUpload();">
+                                </div></div>
+                            </div><!-- /# card -->
                             
                         </div>
 						
@@ -232,26 +236,29 @@
                 </div> <!-- .buttons -->
             </div><!-- .animated -->
         </div><!-- .content -->
+		<div id="shade" style="display:none;width: 88%;height: 88%;z-index: 10000;background-color: #efeff5;position: fixed;opacity: 0.35;"></div>
+		<div id="msgalert" class="sufee-alert alert with-close alert-warning alert-dismissible fade show" style="position: fixed;display: none;margin-left: auto;left: 17%;top: 25%;margin-right: auto;width: 300px;height: 150;right: 0;z-index: 10001;font-size: 18px;"><span class="badge badge-pill badge-warning">提示</span><div id="msgs" style="left: 18px;text-align: center;top: 15px;position: relative;">msg</div><div style="position: relative;top: 36px;left: 38px;"><a id="del" class="btn btn-outline-success" href="javascript:void(0);" role="button">确定</a>&emsp;<a id="cancel" class="btn btn-outline-danger" href="javascript:void(0);" role="button" style="left: 50px;position: relative;">取消</a></div></div>
 
-        <div class="clearfix"></div>
+    <div class="clearfix" style="height: 100%;"></div>
 
-        <footer class="site-footer">
-            <div class="footer-inner bg-white">
-                <div class="row">
-                    <div class="col-sm-6">
-                        Copyright &copy; 2018 Ela Admin. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-                    </div>
-                    <div class="col-sm-6 text-right"> Designed by Colorlib
-                    </div>
+    <footer class="site-footer">
+        <div class="footer-inner bg-white">
+            <div class="row">
+                <div class="col-sm-6" style="float: left;width: 70%;">
+                    Copyright &copy; 2018 Ela Admin. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+                </div>
+                <div class="col-sm-6 text-right" style="float: right;width: 30%;"> Designed by Colorlib
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
+
 
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
-	
-	   <!-- Scripts -->
+
+    <!-- Scripts -->
     <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
@@ -259,25 +266,5 @@
     <script src="assets/js/main.js"></script>
 
 
-    <script src="assets/js/lib/data-table/datatables.min.js"></script>
-    <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-    <script src="assets/js/lib/data-table/jszip.min.js"></script>
-    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
-    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
-    <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
-    <script src="assets/js/init/datatables-init.js"></script>
-
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
-      } );
-  </script>
-
 </body>
 </html>
-
-
