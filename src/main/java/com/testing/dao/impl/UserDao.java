@@ -1,4 +1,4 @@
-package com.testing.dao;
+package com.testing.dao.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.testing.dao.IUserDao;
 import com.testing.entity.User;
 
 @Repository
@@ -73,6 +74,22 @@ public class UserDao implements IUserDao {
 	public Integer getUserCount() {
 		Session session = sessionFactory.getCurrentSession();
 		return Integer.parseInt(session.createSQLQuery("select count(id) from userinfo").list().get(0).toString());
+	}
+
+	@Override
+	public void UpdateMailSeting(Integer userid, Integer mailid) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<User> users = session.createQuery("from User where id = :userid")
+				.setParameter("userid", userid).list();
+		if (users.size() > 0) {
+			users.get(0).setMailId(mailid);
+			session.update(users.get(0));
+			session.flush();
+		} else {
+			return ;
+		}
 	}
 
 }

@@ -20,7 +20,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.testing.common.MyLogger;
 import com.testing.entity.User;
-import com.testing.service.UploadManager;
+import com.testing.service.impl.UploadManager;
 
 @Controller
 public class FileController {

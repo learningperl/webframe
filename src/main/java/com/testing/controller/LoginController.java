@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.testing.entity.User;
-import com.testing.service.UserManager;
+import com.testing.service.impl.UserManager;
 
 @Controller
 public class LoginController {

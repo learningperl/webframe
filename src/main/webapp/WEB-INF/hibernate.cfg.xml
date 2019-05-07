@@ -11,5 +11,6 @@
         <mapping class="com.testing.entity.Res"/>
         <mapping class="com.testing.entity.ResDetail"/>
         <mapping class="com.testing.entity.Rank"/>
+        <mapping class="com.testing.entity.Mail"/>
     </session-factory>
 </hibernate-configuration>

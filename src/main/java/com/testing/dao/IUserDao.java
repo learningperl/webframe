@@ -13,4 +13,6 @@ public interface IUserDao {
 	User UserInfo(Integer userid);
 
 	Integer getUserCount();
+
+	void UpdateMailSeting(Integer userid, Integer mailid);
 }

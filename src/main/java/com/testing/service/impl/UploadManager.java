@@ -1,4 +1,4 @@
-package com.testing.service;
+package com.testing.service.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +14,8 @@ import com.testing.entity.CaseDetail;
 import com.testing.entity.Cases;
 import com.testing.entity.Res;
 import com.testing.entity.ResDetail;
+import com.testing.service.IResDetailManager;
+import com.testing.service.IUploadManager;
 
 @Service("uploadService")
 public class UploadManager implements IUploadManager {

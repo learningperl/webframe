@@ -1,14 +1,13 @@
-package com.testing.service;
+package com.testing.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.testing.dao.RankDao;
-import com.testing.dao.UserDao;
+import com.testing.dao.impl.RankDao;
 import com.testing.entity.Rank;
-import com.testing.entity.User;
+import com.testing.service.IRankManager;
 
 @Service("rankService")
 public class RankManager implements IRankManager {

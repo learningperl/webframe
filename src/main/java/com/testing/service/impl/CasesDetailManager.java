@@ -1,13 +1,14 @@
-package com.testing.service;
+package com.testing.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.testing.dao.CaseDetailDao;
-import com.testing.dao.CasesDao;
+import com.testing.dao.impl.CaseDetailDao;
+import com.testing.dao.impl.CasesDao;
 import com.testing.entity.CaseDetail;
+import com.testing.service.ICasesDetailManager;
 
 @Service("caseDetailService")
 public class CasesDetailManager implements ICasesDetailManager {

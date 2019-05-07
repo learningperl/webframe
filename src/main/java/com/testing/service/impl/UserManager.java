@@ -1,10 +1,11 @@
-package com.testing.service;
+package com.testing.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.testing.dao.UserDao;
+import com.testing.dao.impl.UserDao;
 import com.testing.entity.User;
+import com.testing.service.IUserManager;
 
 @Service("userService")
 public class UserManager implements IUserManager {
@@ -36,6 +37,12 @@ public class UserManager implements IUserManager {
 	public void Updater(User user) {
 		// TODO Auto-generated method stub
 		userDao.Updater(user);
+	}
+	
+	@Override
+	public void UpdateMailSeting(Integer userid,Integer mailid) {
+		// TODO Auto-generated method stub
+		userDao.UpdateMailSeting(userid,mailid);
 	}
 
 	@Override

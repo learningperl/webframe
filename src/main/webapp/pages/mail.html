@@ -25,8 +25,9 @@
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
-<body style="height: 90%;" onload="javascript:getRess();">
+<body style="height: 90%;" onload="javascript:getMails();">
     <!-- Left Panel -->
+	
 
     <aside id="left-panel" class="left-panel">
         <nav class="navbar navbar-expand-sm navbar-default">
@@ -48,10 +49,9 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>测试报表</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="./ress.html">测试结果</a></li>
+                           <li><i class="fa fa-table"></i><a href="./ress.html">测试结果</a></li>
                             <li><i class="fa fa-table"></i><a href="./details.html">详细报告</a></li>
-							<li><i class="fa fa-table"></i><a href="./reports.html">测试报告</a></li>
-                        </ul>
+							<li><i class="fa fa-table"></i><a href="./reports.html">测试报告</a></li></ul>
                     </li>
 
                     <li class="menu-title">Settings</li><!-- /.menu-title -->
@@ -59,7 +59,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>设置</a>
 							<ul class="sub-menu children dropdown-menu">
 								<li><i class="ti-user text-muted"></i></i><a href="./user.html">个人中心</a></li>
-								<li><i class="menu-icon fa fa-th"></i><a href="./mail.html">邮件配置</a></li>
+								<li><i class="menu-icon fa fa-th"></i><a href="./config.html">平台设置</a></li>
 							</ul>
 						</li>
  
@@ -73,7 +73,7 @@
 
     <!-- Right Panel -->
 
-    <div id="right-panel" class="right-panel" style="height: 90%;">
+    <div id="right-panel" class="right-panel">
 
         <!-- Header-->
         <header id="header" class="header">
@@ -202,9 +202,7 @@
                                 </ol>
                             </div>
                         </div>
-						<select class="btn btn-outline-primary" style="float: right;min-height: 40px;margin: 5px 5px;" id="cases" onchange="javascript:showRess();">
-						  <option value ="0">筛选用例</option>
-						</select>
+						<a class="btn btn-outline-primary" style="float: right;top: 7px;position: relative;" href="javascript:showedit('0',0);" role="button">添加模板</a>
                     </div>
                 </div>
             </div>
@@ -216,22 +214,29 @@
 
                     <!-- Left Block -->
                     <div id="row" class="row">
-                        <div class="col-md-6">
-							<div class="card">
-                                
-                                <div class="card-body" style="height: 132px;text-align: center;">
-									<div style="border: 1px dashed #ccc;height: 95px;top: center;/* position: relative; */">
-										
-										<img src="images/upload.jpg" style="width: auto;float:left;top: 11px;position: relative;max-height: 71px;">
-										<input id="filename" class="btn btn-outline-info" type="text" value="文件名" style="top: 26px;position: relative;text-align:left;" readonly="readonly">
-										<input id="u1" class="btn btn-outline-info" type="button" value="选择用例" style="float: right;height: 95px;display:block;" onclick="javascript:document.getElementById('upload').click();">
-										<input id="u2" class="btn btn-outline-success" type="button" value="上传用例" style="float: right;height: 95px;display:none;" onclick="javascript:Upload();">
-										<input id="upload" type="file" name="fileUpload" accept=".xls,.xlsx" style="display:none;" onchange="javascript:onUpload();">
-                                </div></div>
-                            </div><!-- /# card -->
-                            
+                        
+				
+				<div class="col-md-4" style="flex:0 0 80%;max-width:80%;left: 10%;">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Module Name</label></div>
+                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="Name" class="form-control"></div>
+                                    </div>
+								<div class="row form-group">
+                                        <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Module HTML</label></div>
+                                        <div class="col-12 col-md-9"><textarea name="textarea-input" id="textarea-input" rows="9" placeholder="Content..." class="form-control"></textarea></div>
+                                    </div>
+                            </div>
+                            <div class="card-footer">
+								<div style="float:right;">
+									<a class="btn btn-outline-primary" href="javascript:editmail('0',1);" role="button">保存</a>
+									<a class="btn btn-outline-danger" href="javascript:editmail('0',0);" role="button">取消</a>
+								</div>
+							</div>
                         </div>
-						
+                    </div>
+				
                     </div><!-- .row -->
                 </div> <!-- .buttons -->
             </div><!-- .animated -->

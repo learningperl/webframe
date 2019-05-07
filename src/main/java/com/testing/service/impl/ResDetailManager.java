@@ -1,13 +1,14 @@
-package com.testing.service;
+package com.testing.service.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.testing.dao.ResDetailDao;
-import com.testing.dao.ResDao;
+import com.testing.dao.impl.ResDao;
+import com.testing.dao.impl.ResDetailDao;
 import com.testing.entity.ResDetail;
+import com.testing.service.IResDetailManager;
 
 @Service("resDetailService")
 public class ResDetailManager implements IResDetailManager {

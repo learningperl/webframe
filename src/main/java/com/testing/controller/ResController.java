@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSONObject;
 import com.testing.entity.ResDetail;
+import com.testing.service.impl.ResDetailManager;
+import com.testing.service.impl.ResManager;
 import com.testing.entity.Res;
-import com.testing.service.ResDetailManager;
-import com.testing.service.ResManager;
 
 @Controller
 public class ResController {

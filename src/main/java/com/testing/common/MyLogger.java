@@ -11,7 +11,7 @@ public class MyLogger {
 	
 	public MyLogger(String p) {
 		MyLogger.path = p;
-		PropertyConfigurator.configure(path + "\\log4j.properties");
+		PropertyConfigurator.configure(path + "/log4j.properties");
 	}
 	
 }

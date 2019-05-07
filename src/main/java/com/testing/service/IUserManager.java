@@ -12,5 +12,7 @@ public interface IUserManager {
 
 	User UserInfo(Integer userid);
 
-	Integer getUserCount(); 
+	Integer getUserCount();
+
+	void UpdateMailSeting(Integer userid, Integer mailid); 
 }

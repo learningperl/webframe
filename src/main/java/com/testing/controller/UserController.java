@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.alibaba.fastjson.JSONObject;
 import com.testing.entity.Rank;
 import com.testing.entity.User;
-import com.testing.service.CasesManager;
-import com.testing.service.RankManager;
-import com.testing.service.ResManager;
-import com.testing.service.UserManager;
+import com.testing.service.impl.CasesManager;
+import com.testing.service.impl.RankManager;
+import com.testing.service.impl.ResManager;
+import com.testing.service.impl.UserManager;
 
 @Controller
 public class UserController {

@@ -1,4 +1,4 @@
-package com.testing.dao;
+package com.testing.dao.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.testing.common.MyLogger;
+import com.testing.dao.ICaseDetailDao;
 import com.testing.entity.CaseDetail;
 import com.testing.entity.Cases;
 
@@ -75,7 +76,7 @@ public class CaseDetailDao implements ICaseDetailDao {
 	public List<CaseDetail> getDetails(Integer caseid) {
 		Session session = sessionFactory.getCurrentSession();
 		List<CaseDetail> details = session.createQuery("from CaseDetail where caseid = :caseid")
-				.setParameter("caseid", 1).list();
+				.setParameter("caseid", caseid).list();
 		if (details.size() > 0) {
 			return details;
 		} else {

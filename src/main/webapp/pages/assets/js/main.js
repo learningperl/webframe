@@ -1,7 +1,7 @@
 var success = '<div id="msgsuccess" class="sufee-alert alert with-close alert-primary alert-dismissible fade show" style="position: fixed;display: table-footer-group;margin-left: auto;left: 0;top: 15px;margin-right: auto;width: 400px;right: 0;text-align: center;"><span class="badge badge-pill badge-primary">Success</span>&emsp;msg<button id="close" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>';
 var error = '<div id="msgerror" class="sufee-alert alert with-close alert-danger alert-dismissible fade show" style="position: fixed;display: table-footer-group;margin-left: auto;left: 0;top: 15px;margin-right: auto;width: 400px;right: 0;text-align: center;"><span class="badge badge-pill badge-danger">error</span>&emsp;msg<button id="close" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>';
 var warn = '<div id="msgwarn" class="sufee-alert alert with-close alert-warning alert-dismissible fade show" style="position: fixed;display: table-footer-group;margin-left: auto;left: 0;top: 15px;margin-right: auto;width: 400px;right: 0;text-align: center;"><span class="badge badge-pill badge-warning">info</span>&emsp;msg<button id="close" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>';
-var onecase = '<div class="col-md-6"><div class="card"><div class="card-header"><strong>casename&emsp;</strong><small><code>&lt;type&gt;</code></small><small style="float:right;top: 4px;position: relative;"><code>&lt;createtime&gt;</code></small></div><div class="card-body"><a class="btn btn-outline-primary" href="javascript:edit(\'caseid\');" role="button">查看</a>&emsp;<a class="btn btn-outline-warning" href="javascript:deatails(\'caseid\');" role="button">Link</a>&emsp;<a class="btn btn-outline-danger" href="javascript:dialogBox(\'您确认删除该用例？\',\'caseid\');" role="button">删除</a></div></div><!-- /# card --></div>';
+var onecase = '<div class="col-md-6"><div class="card"><div class="card-header"><strong>casename&emsp;</strong><small><code>&lt;type&gt;</code></small><small style="float:right;top: 4px;position: relative;"><code>&lt;createtime&gt;</code></small></div><div class="card-body"><a class="btn btn-outline-primary" href="javascript:edit(\'caseid\');" role="button">查看</a>&emsp;<a class="btn btn-outline-warning" href="javascript:deatails(\'caseid\');" role="button">Link</a>&emsp;<a class="btn btn-outline-danger" href="javascript:dialogBox(\'您确认删除该用例？\',\'caseid\',1);" role="button">删除</a></div></div><!-- /# card --></div>';
 var sheetshow = '<a class="nav-item nav-link active show" data-toggle="tab" href="#sheet1" role="tab"  aria-selected="true" style="font-size: 20px;">sheetname</a>';
 var sheet = '<a class="nav-item nav-link" data-toggle="tab" href="#sheet1" role="tab" aria-selected="false" style="font-size: 20px;">sheetname</a>';
 var tableshow = '<div class="tab-pane fade active show" id="sheet1" role="tabpanel" aria-labelledby="custom-nav-home-tab"><div class="card"><div class="card-body" style="padding-top:20px;"><table id="bootstrap-data-table" class="table table-striped table-bordered"><thead><tr><th>用例名</th><th>关键字</th><th>p1</th><th>p2</th><th>p3</th><th>状态</th></tr></thead><tbody>bodycontent</tbody></table></div></div></div>';
@@ -9,6 +9,12 @@ var table = '<div class="tab-pane fade" id="sheet1" role="tabpanel" aria-labelle
 
 var resdetail = '<div class="card" style="border: 2px solid;border-color: #41d841;"><div class="card-header"><h4>casename</h4></div><div class="card-body">';
 var resbody='<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist"><li class="nav-item"><a class="nav-link" id="pills-home-tab" data-toggle="pill" href="#click-home" role="tab" aria-controls="pills-home" aria-selected="false">关键字</a></li><li class="nav-item"><a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#click-profile" role="tab" aria-controls="pills-profile" aria-selected="false">参数</a></li><li class="nav-item"><a class="nav-link active show" id="pills-contact-tab" data-toggle="pill" href="#click-contact" role="tab" aria-controls="pills-contact" aria-selected="true">实际结果</a></li></ul><div class="tab-content" id="pills-tabContent"><div class="tab-pane fade" id="click-home" role="tabpanel" aria-labelledby="pills-home-tab"><p>keywordname</p> </div><div class="tab-pane fade" id="click-profile" role="tabpanel" aria-labelledby="pills-profile-tab"><p>params</p></div><div class="tab-pane fade show active" id="click-contact" role="tabpanel" aria-labelledby="pills-contact-tab"><p>actualresult</p></div></div>';
+
+var mailsingle='<div id="divid" class="col-md-4" style="flex:0 0 80%;max-width:80%;left: 10%;"><div class="card"><div id="modules" class="card-body"><iframe style="width: 100%;height: 412px;border: none;" srcdoc=\'maildoc\'></iframe></div><div class="card-footer"><strong class="card-title mb-3" style="font-size:28;">mailname</strong><small><code>&#9;&lt;mailtype&gt;</code></small><div style="float:right;"><a class="btn btn-outline-primary" href="javascript:testmail(\'mailid\');" role="button">预览</a>&#9;<a class="btn btn-outline-warning" href="javascript:showedit(\'divid\',\'mailid\');" role="button">编辑</a>&#9;<a class="btn btn-outline-danger" href="javascript:dialogBox(\'您确认删除该邮件配置？\',\'mailid\',2);" role="button">删除</a>&#9;<a class="btn btn-outline-primary" href="javascript:usemail(\'mailid\');" role="button">应用</a></div></div></div></div>'
+
+var addmail='<div class="card"><div class="card-body"><form class="mailform"><div class="row form-group"><div class="col col-md-3"><input type="text" value="mailid" name="id" placeholder="Name" class="form-control" hidden><label for="text-input" class=" form-control-label">Module Name</label></div><div class="col-12 col-md-9"><input type="text" id="focus-input" value="mailname" name="mName" placeholder="Name" class="form-control"></div></div><div class="row form-group"><div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Module HTML</label></div><div class="col-12 col-md-9"><textarea name="mHtml" id="textarea-input" rows="14" placeholder="Content..." class="form-control"></textarea></form></div></div></div><div class="card-footer"><div style="float:right;"><a class="btn btn-outline-primary" href="javascript:editmail(\'mailid\',2);" role="button">保存</a>&#9;<a class="btn btn-outline-danger" href="javascript:editmail(\'divid\',0);" role="button">取消</a></div></div></div>'
+
+var objmail = null;
 
 var reses = null;
 
@@ -713,7 +719,7 @@ function getResDetails(){
 						}
 					}
 					if (c!=""){
-						c = t.replace(/bodycontent/g,"sheet"+c);
+						c = t.replace(/bodycontent/g,c);
 						document.getElementById('tabContent').innerHTML += c;
 					}
 					$('#bootstrap-data-table-export').DataTable();
@@ -765,6 +771,168 @@ function deatails(caseid){
 	});
 }
 
+function getMails(){
+	$.ajax({
+	url : "../user/getmails",
+	type : 'GET',
+	data : null,
+	// 告诉jQuery不要去处理发送的数据
+	processData : false,
+	async : false,
+	// 告诉jQuery不要去设置Content-Type请求头
+	contentType : false,
+	beforeSend : function() {
+		showmsg(3, "正在加载详细结果");
+	},
+	success : function(responseStr) {
+		var obj = eval("(" + responseStr + ")");
+		if (obj["status"] == 200) {
+			var html = '';
+			objmail = obj["mails"];
+			for (var i=0;i<obj["mails"].length;i++){
+				var m = mailsingle;
+				//设置高亮显示当前使用的模板
+				if (true){
+					m = m.replace(/class="card"/g,'class="card" style="border: 10px solid;border-color: #f7d1d1;border-radius: 5px;""');
+				}
+				m = m.replace(/divid/g,'mail'+(i+1));
+				m = m.replace(/maildoc/g,obj["mails"][i]["mHtml"]);
+				m = m.replace(/mailid/g,obj["mails"][i]["id"]);
+				m = m.replace(/mailname/g,obj["mails"][i]["mName"]);
+				if(obj["mails"][i]["type"]==0){
+					m = m.replace(/mailtype/g,"self");
+				}else{
+					m = m.replace(/mailtype/g,"sys");
+				}
+				html += m;	
+			}
+			document.getElementById("row").innerHTML = html;
+			showmsg(0, obj["msg"]);
+		}else{
+			showmsg(2, obj["msg"]);
+		}
+	},
+	error : function(responseStr) {
+		showmsg(2, "服务器忙，请稍后重试！");
+	}
+	});
+}
+
+var editingmail = null;
+var nowedit = null;
+function showedit(ele,mailid){
+	if (nowedit != null){
+		showmsg(3,"您正在编辑，请先保存或退出");
+		document.getElementById(nowedit).focus();
+		return;
+	}
+	if(mailid==0){
+		editingmail = document.getElementById("mail1").innerHTML;
+		m = addmail.replace(/mailid/g,mailid);
+		m = m.replace(/divid/g,"mail1");
+		document.getElementById("mail1").innerHTML = m;
+		nowedit = 'focus-input';
+	}else{
+		editingmail = document.getElementById(ele).innerHTML;
+		m = addmail.replace(/mailid/g,mailid);
+		m = m.replace(/divid/g,ele);
+		for(var i = 0;i<objmail.length;i++){
+			if (objmail[i]['id'] == mailid){
+				m = m.replace(/mailname/g,objmail[i]['mName']);
+				document.getElementById(ele).innerHTML = m;
+				document.getElementById('textarea-input').innerText = objmail[i]['mHtml'];
+				nowedit = 'focus-input';
+			}
+		}
+	}
+}
+
+function editmail(mailid,t){
+	//点击取消，则刷新页面
+	if(t==0){
+		document.getElementById(mailid).innerHTML = editingmail;
+		nowedit = null;
+	}else{
+		//添加
+		$.ajax({
+		url : "../user/addmail",
+		type : 'POST',
+		data : $(".mailform").serialize(),
+		cache : false,
+		dataType : 'text',
+		beforeSend : function() {
+			showmsg(3, "正在提交...");
+		},
+		success : function(responseStr) {
+			var obj = eval("(" + responseStr + ")");
+			if (obj["status"] == 200) {
+				location.reload();
+			}else{
+				showmsg(2, obj["msg"]);
+			}
+		},
+		error : function(responseStr) {
+			showmsg(2, "服务器忙，请稍后重试！");
+		}
+		});
+	}
+}
+
+function usermail(mailid) {
+	//更新
+	$.ajax({
+	url : "../user/addmail",
+	type : 'POST',
+	data : "id=" + mailid +"&Status=1",
+	cache : false,
+	dataType : 'text',
+	beforeSend : function() {
+		showmsg(3, "正在提交...");
+	},
+	success : function(responseStr) {
+		var obj = eval("(" + responseStr + ")");
+		if (obj["status"] == 200) {
+			location.reload();
+		}else{
+			showmsg(2, obj["msg"]);
+		}
+	},
+	error : function(responseStr) {
+		showmsg(2, "服务器忙，请稍后重试！");
+	}
+	});
+}
+
+function delMail(mailid) {
+	var AjaxURL = "../user/delmail?id="+mailid;
+//	formData = new FormData();
+//	formData.append('id',mailid);
+	$.ajax({
+		url : AjaxURL,
+		type : 'GET',
+		data : null,
+		// 告诉jQuery不要去处理发送的数据
+		processData : false,
+		// 告诉jQuery不要去设置Content-Type请求头
+		contentType : false,
+		beforeSend : function() {
+			showmsg(3, "正在删除用例");
+		},
+		success : function(responseStr) {
+			var obj = eval("(" + responseStr + ")");
+			if (obj["status"] == 200) {
+				location.reload();
+			} else {
+				showmsg(2, obj["msg"]);
+			}
+		},
+		error : function(responseStr) {
+			showmsg(2, "服务器忙，请稍后重试！");
+		}
+	});
+}
+
+
 function showtr(ele){
 	if(ele.nextElementSibling.style.display == "")
 		ele.nextElementSibling.style.display = "none";
@@ -814,14 +982,21 @@ function get_cookie(Name) {
 	return returnvalue;
 }
 
-function dialogBox(message,data){
+function dialogBox(message,data,t){
 	document.getElementById("msgalert").style.display = "block";
 	document.getElementById("shade").style.display = "block";
 	document.getElementById("msgs").innerText=message;
 	$('#del').click(function(){
+		//删除用例的
+		if (t==1){
+			delCase(data);
+		}
+		//删除邮件配置
+		if (t==2){
+			delMail(data);
+		}
 		document.getElementById("msgalert").style.display = "none";
 		document.getElementById("shade").style.display = "none";
-		delCase(data);
 	});
 	// 取消按钮
 	$('#cancel').click(function(){

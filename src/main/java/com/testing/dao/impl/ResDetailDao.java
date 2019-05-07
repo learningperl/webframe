@@ -1,4 +1,4 @@
-package com.testing.dao;
+package com.testing.dao.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.testing.common.MyLogger;
+import com.testing.dao.IResDetailDao;
 import com.testing.entity.Cases;
 import com.testing.entity.ResDetail;
 

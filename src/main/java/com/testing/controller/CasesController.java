@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSONObject;
 import com.testing.entity.Cases;
-import com.testing.service.CasesDetailManager;
-import com.testing.service.CasesManager;
-import com.testing.service.ResManager;
+import com.testing.service.impl.CasesDetailManager;
+import com.testing.service.impl.CasesManager;
+import com.testing.service.impl.ResManager;
 
 @Controller
 public class CasesController {

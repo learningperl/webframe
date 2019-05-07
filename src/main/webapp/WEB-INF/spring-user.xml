@@ -5,11 +5,11 @@
 
 <beans>
     <!-- Spring Bean -->
-	<bean id="userDao" class="com.testing.dao.UserDao">
+	<bean id="userDao" class="com.testing.dao.impl.UserDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
-	<bean id="userManagerBase" class="com.testing.service.UserManager">
+	<bean id="userManagerBase" class="com.testing.service.impl.UserManager">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
 	

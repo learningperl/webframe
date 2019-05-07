@@ -79,4 +79,15 @@ public class User {
 	public void setImg(String img) {
 		this.img = img;
 	}
+	
+	@Column(name = "mailid")
+	private Integer mailid;
+
+	public Integer getMailId() {
+		return mailid;
+	}
+
+	public void setMailId(Integer mailid) {
+		this.mailid = mailid;
+	}
 }
