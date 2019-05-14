@@ -6,7 +6,7 @@ public interface IUserDao {
 
 	User Login(String username, String password);
 
-	void Register(User user) throws Exception;
+	Integer Register(User user) throws Exception;
 
 	void Updater(User user);
 

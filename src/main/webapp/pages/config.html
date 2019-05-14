@@ -53,12 +53,12 @@
 							<li><i class="fa fa-table"></i><a href="./reports.html">测试报告</a></li></ul>
                     </li>
 
-                    <li class="menu-title">Settings</li><!-- /.menu-title -->
+                   <li class="menu-title">Settings</li><!-- /.menu-title -->
 						<li class="menu-item-has-children dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>设置</a>
 							<ul class="sub-menu children dropdown-menu">
 								<li><i class="ti-user text-muted"></i></i><a href="./user.html">个人中心</a></li>
-								<li><i class="menu-icon fa fa-th"></i><a href="./config.html">平台设置</a></li>
+								<li><i class="menu-icon fa fa-th"></i><a href="./mail.html">邮件配置</a></li>
 							</ul>
 						</li>
  
@@ -160,17 +160,14 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img id="user" class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa-user"></i>My Profile</a>
+                            <a class="nav-link" href="./user.html"><i class="ti-user text-muted"></i></i>个人中心</a>
+                            <a class="nav-link" href="./mail.html"><i class="menu-icon fa fa-cogs"></i>平台设置</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-bell-o"></i>Notifications <span class="count">13</span></a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-cog"></i>Settings</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-power-off"></i>Logout</a>
+                            <a class="nav-link" href="javascript:Logout();"><i class="menu-icon fa fa-laptop"></i></i>退出平台</a>
                         </div>
                     </div>
                 </div>

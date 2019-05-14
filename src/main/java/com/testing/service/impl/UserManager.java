@@ -28,9 +28,9 @@ public class UserManager implements IUserManager {
 	}
 	
 	@Override
-	public void Register(User user) throws Exception {
+	public Integer Register(User user) throws Exception {
 		// TODO Auto-generated method stub
-		userDao.Register(user);
+		return userDao.Register(user);
 	}
 
 	@Override

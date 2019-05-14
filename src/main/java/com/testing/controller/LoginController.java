@@ -106,9 +106,12 @@ public class LoginController {
 		}
 		String json;
 		if (userid == null || !userid.contains("true-")) {
-			userService.Register(user);
-			json = "{\"status\":200,\"msg\":\"恭喜您，注册成功\"}";
-			System.out.println(json);
+			Integer res = userService.Register(user);
+			if(res==0) {
+				json = "{\"status\":200,\"msg\":\"恭喜您，注册成功\"}";
+			}else {
+				json = "{\"status\":201,\"msg\":\"用户名已经被注册，请重新输入\"}";
+			}
 		} else {
 			// System.out.println(json);
 			json = "{\"status\":203,\"msg\":\"您已经登录，不能注册\"}";

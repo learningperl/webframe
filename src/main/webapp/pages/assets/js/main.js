@@ -35,6 +35,7 @@ jQuery(document).ready(
 					success : function(data) {
 						if (data["status"] == 200) {
 							document.cookie = 'img=' + data['img'];
+							document.cookie = 'mailid=' + data['mailid'];
 						} else
 							showmsg(2, obj["msg"]);
 					},
@@ -43,7 +44,7 @@ jQuery(document).ready(
 					}
 				});
 			}
-			//document.getElementById("user").src = "images/avatar/"+ get_cookie("img");
+			document.getElementById("user").src = "images/avatar/"+ get_cookie("img");
 
 			"use strict";
 
@@ -169,7 +170,34 @@ jQuery(document).ready(
 			});
 
 		});
-		
+	
+function Logout() {
+	var AjaxURL = "../user/logout";
+	$.ajax({
+		url : AjaxURL,
+		type : 'POST',
+		data : null,
+		// 告诉jQuery不要去处理发送的数据
+		processData : false,
+		// 告诉jQuery不要去设置Content-Type请求头
+		contentType : false,
+		success : function(responseStr) {
+			var obj = eval("(" + responseStr + ")");
+			if (obj["status"] == 200) {
+				showmsg(1, obj["msg"]);
+				location.reload();
+			} else {
+				showmsg(2, obj["msg"]);
+			}
+		},
+		error : function(responseStr) {
+			showmsg(2, "服务器忙，请稍后重试！");
+		}
+	});
+	document.getElementById('u2').disabled = false;
+}
+
+	
 function getRank(){
 	$.ajax({
 	url : "../user/getrank",
@@ -789,23 +817,47 @@ function getMails(){
 		if (obj["status"] == 200) {
 			var html = '';
 			objmail = obj["mails"];
+			var mid = get_cookie('mailid');
+			if (mid == ""){
+				mid = "1"
+			}
+			for (var i=0;i<obj["mails"].length;i++){
+				var m = mailsingle;
+				//设置高亮显示当前使用的模板，并显示在最前面
+				if (obj["mails"][i]["id"] == mid){
+					m = m.replace(/class="card"/g,'class="card" style="border: 10px solid;border-color: #f7d1d1;border-radius: 5px;""');
+					m = m.replace(/divid/g,'mail'+(i+1));
+					m = m.replace(/maildoc/g,obj["mails"][i]["mHtml"]);
+					m = m.replace(/mailid/g,obj["mails"][i]["id"]);
+					m = m.replace(/mailname/g,obj["mails"][i]["mName"]);
+					if(obj["mails"][i]["type"]==0){
+						m = m.replace(/mailtype/g,"self");
+					}else{
+						m = m.replace(/mailtype/g,"sys");
+					}
+					html += m;
+				}	
+			}
+			
 			for (var i=0;i<obj["mails"].length;i++){
 				var m = mailsingle;
 				//设置高亮显示当前使用的模板
-				if (true){
-					m = m.replace(/class="card"/g,'class="card" style="border: 10px solid;border-color: #f7d1d1;border-radius: 5px;""');
-				}
-				m = m.replace(/divid/g,'mail'+(i+1));
-				m = m.replace(/maildoc/g,obj["mails"][i]["mHtml"]);
-				m = m.replace(/mailid/g,obj["mails"][i]["id"]);
-				m = m.replace(/mailname/g,obj["mails"][i]["mName"]);
-				if(obj["mails"][i]["type"]==0){
-					m = m.replace(/mailtype/g,"self");
+				if (obj["mails"][i]["id"] == mid){
+					;
 				}else{
-					m = m.replace(/mailtype/g,"sys");
-				}
-				html += m;	
+					m = m.replace(/divid/g,'mail'+(i+1));
+					m = m.replace(/maildoc/g,obj["mails"][i]["mHtml"]);
+					m = m.replace(/mailid/g,obj["mails"][i]["id"]);
+					m = m.replace(/mailname/g,obj["mails"][i]["mName"]);
+					if(obj["mails"][i]["type"]==0){
+						m = m.replace(/mailtype/g,"self");
+					}else{
+						m = m.replace(/mailtype/g,"sys");
+					}
+					html += m;
+				}	
 			}
+			
 			document.getElementById("row").innerHTML = html;
 			showmsg(0, obj["msg"]);
 		}else{
@@ -878,20 +930,21 @@ function editmail(mailid,t){
 	}
 }
 
-function usermail(mailid) {
+function usemail(mailid) {
 	//更新
 	$.ajax({
-	url : "../user/addmail",
-	type : 'POST',
-	data : "id=" + mailid +"&Status=1",
+	url : "../user/usemail",
+	type : 'GET',
+	data : "id=" + mailid,
 	cache : false,
 	dataType : 'text',
 	beforeSend : function() {
-		showmsg(3, "正在提交...");
+		showmsg(3, "正在应用...");
 	},
 	success : function(responseStr) {
 		var obj = eval("(" + responseStr + ")");
 		if (obj["status"] == 200) {
+			document.cookie = "mailid=" + mailid;
 			location.reload();
 		}else{
 			showmsg(2, obj["msg"]);

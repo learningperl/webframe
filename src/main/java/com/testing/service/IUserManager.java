@@ -6,7 +6,7 @@ public interface IUserManager {
 	 //登录接口
 	User Login(User user) throws Exception;
 
-	void Register(User user) throws Exception;
+	Integer Register(User user) throws Exception;
 
 	void Updater(User user);
 

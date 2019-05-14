@@ -12,10 +12,13 @@
 
     
 
+  <link rel="stylesheet" href="assets/css/normalize.css">
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="assets/css/themify-icons.css">
+<link rel="stylesheet" href="assets/css/pe-icon-7-filled.css">
+<link rel="stylesheet" href="assets/css/flag-icon.min.css"><link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
 <link rel="stylesheet" href="assets/css/style.css">
-<link href="assets/calendar/fullcalendar.css" rel="stylesheet" />
 
    <style>
     #weatherWidget .currentDesc {
@@ -184,17 +187,14 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                            <img id="user" class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                            <a class="nav-link" href="./user.html"><i class="ti-user text-muted"></i></i>个人中心</a>
+                            <a class="nav-link" href="./mail.html"><i class="menu-icon fa fa-cogs"></i>平台设置</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
-
-                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
-
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="javascript:Logout();"><i class="menu-icon fa fa-laptop"></i></i>退出平台</a>
                         </div>
                     </div>
 
@@ -322,20 +322,6 @@
 <script src="assets/js/lib/flot-chart/jquery.flot.js"></script>
 <script src="assets/js/lib/flot-chart/jquery.flot.pie.js"></script>
 <script src="assets/js/lib/flot-chart/jquery.flot.spline.js"></script>
-<script src="assets/weather/js/jquery.simpleWeather.min.js"></script>
-<script src="assets/weather/js/weather-init.js"></script>
-<script src="assets/js/lib/moment/moment.js"></script>
-<script src="assets/calendar/fullcalendar.min.js"></script>
-<script src="assets/calendar/fullcalendar-init.js"></script>
-    <script src="assets/js/init/weather-init.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-    <script src="assets/js/init/fullcalendar-init.js"></script>
-
-    <!--Local Stuff-->
-    <script>
-        
-    </script>
 </body>
 </html>

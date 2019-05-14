@@ -59,7 +59,7 @@ public class UserController {
 			User res = userService.UserInfo(Integer.parseInt(userid));
 			if(res!=null) {
 				json = "{\"status\":200,\"msg\":\"查询成功\",";
-				json += "\"nickname\":\""+res.getNick()+"\",\"descripe\":\""+res.getDesc()+"\",\"img\":\""+res.getImg()+"\"}";
+				json += "\"nickname\":\""+res.getNick()+"\",\"descripe\":\""+res.getDesc()+"\",\"img\":\""+res.getImg() +"\",\"mailid\":\""+res.getMailId()+"\"}";
 			}else {
 				json = "{\"status\":201,\"msg\":\"未查询到用户信息\"}";
 			}

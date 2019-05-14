@@ -25,8 +25,16 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
-	public void Register(User user) throws Exception {
-		sessionFactory.getCurrentSession().save(user);
+	public Integer Register(User user) throws Exception {
+		@SuppressWarnings("unchecked")
+		List<User> users = sessionFactory.getCurrentSession().createQuery("from User where username = :username")
+				.setParameter("username", user.getUserName()).list();
+		if (users.size() > 0) {
+			return -1;
+		} else {
+			sessionFactory.getCurrentSession().save(user);
+			return 0;
+		}
 	}
 
 	@SuppressWarnings("unchecked")
